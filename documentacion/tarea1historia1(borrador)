@@ -1,0 +1,21 @@
+Historia 1) 
+Tarea 1 : se deben persistir la entidad licencias con los siguientes campos 
+id_licencia serial , 
+observacion character(50) ,
+fecha_emision date , 
+fecha_vencimiento date,
+tipo_licencia character(1),
+id_categoria int (fk) references categoria , 
+id_empleado int (fk) references empleado .
+
+la entidad categoria 
+id_categoria serial, 
+nombre character(50) . 
+que debe contener los siguientes datos : 
+primera_vez , renovacion , duplicado . 
+ 
+la entidad empleado 
+id_empleado serial,
+nombre character(50) , 
+apellido character(50). 
+
