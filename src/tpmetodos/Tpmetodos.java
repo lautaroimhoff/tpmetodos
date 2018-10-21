@@ -5,6 +5,9 @@
  */
 package tpmetodos;
 
+import DAOs.UsuarioDAO;
+import Entity.Usuario;
+
 /**
  *
  * @author lautaro
@@ -16,6 +19,7 @@ public class Tpmetodos {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+
     }
     
 }
