@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21/10/2018 17:24:19 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.Nacionalidad" table="nacionalidad" schema="public" optimistic-lock="version">
+        <id name="idnacionalidad" type="int">
+            <column name="idnacionalidad" />
+            <generator class="assigned" />
+        </id>
+        <property name="nacionalidad" type="string">
+            <column name="nacionalidad" length="50" not-null="true" />
+        </property>
+        <set name="titulars" table="titular" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idnacionalidad" not-null="true" />
+            </key>
+            <one-to-many class="Entity.Titular" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21/10/2018 17:24:19 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.Usuario" table="usuario" schema="public" optimistic-lock="version">
+        <id name="idusuario" type="int">
+            <column name="idusuario" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="sexo" class="Entity.Sexo" fetch="select">
+            <column name="idsexo" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tipodocumento" class="Entity.Tipodocumento" fetch="select">
+            <column name="idtipodocumento" not-null="true" />
+        </many-to-one>
+        <property name="nombreusuario" type="string">
+            <column name="nombreusuario" length="50" not-null="true" />
+        </property>
+        <property name="contrasena" type="string">
+            <column name="contrasena" length="50" not-null="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="50" not-null="true" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="apellido" length="50" not-null="true" />
+        </property>
+        <property name="fechanacimiento" type="date">
+            <column name="fechanacimiento" length="13" not-null="true" />
+        </property>
+        <property name="numerodocumento" type="string">
+            <column name="numerodocumento" length="50" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="50" not-null="true" />
+        </property>
+        <property name="numerotelefono" type="string">
+            <column name="numerotelefono" length="50" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="50" not-null="true" />
+        </property>
+        <property name="permisosuperusuario" type="boolean">
+            <column name="permisosuperusuario" not-null="true" />
+        </property>
+        <property name="idempleadogestor" type="short">
+            <column name="idempleadogestor" not-null="true" />
+        </property>
+        <property name="fechagestion" type="date">
+            <column name="fechagestion" length="13" not-null="true" />
+        </property>
+        <set name="licencias" table="licencia" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idempleadoadmemisor" not-null="true" />
+            </key>
+            <one-to-many class="Entity.Licencia" />
+        </set>
+    </class>
+</hibernate-mapping>

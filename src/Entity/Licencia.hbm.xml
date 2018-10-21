@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21/10/2018 17:24:19 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.Licencia" table="licencia" schema="public" optimistic-lock="version">
+        <id name="numerolicencia" type="int">
+            <column name="numerolicencia" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="categorialicencia" class="Entity.Categorialicencia" fetch="select">
+            <column name="idcategorialicencia" not-null="true" />
+        </many-to-one>
+        <many-to-one name="claselicencia" class="Entity.Claselicencia" fetch="select">
+            <column name="idclaselicencia" />
+        </many-to-one>
+        <many-to-one name="titular" class="Entity.Titular" fetch="select">
+            <column name="idtitularreceptor" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuario" class="Entity.Usuario" fetch="select">
+            <column name="idempleadoadmemisor" not-null="true" />
+        </many-to-one>
+        <property name="fechaemision" type="date">
+            <column name="fechaemision" length="13" not-null="true" />
+        </property>
+        <property name="horaemision" type="time">
+            <column name="horaemision" length="15" not-null="true" />
+        </property>
+        <property name="vigencia" type="java.lang.Short">
+            <column name="vigencia" />
+        </property>
+        <property name="observacion" type="string">
+            <column name="observacion" length="500" />
+        </property>
+        <property name="vigente" type="boolean">
+            <column name="vigente" not-null="true" />
+        </property>
+        <property name="fechavencimiento" type="date">
+            <column name="fechavencimiento" length="13" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

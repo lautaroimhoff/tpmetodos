@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21/10/2018 17:24:19 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.Categorialicencia" table="categorialicencia" schema="public" optimistic-lock="version">
+        <id name="idcategorialicencia" type="int">
+            <column name="idcategorialicencia" />
+            <generator class="assigned" />
+        </id>
+        <property name="categorialicencia" type="string">
+            <column name="categorialicencia" length="50" not-null="true" />
+        </property>
+        <set name="licencias" table="licencia" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idcategorialicencia" not-null="true" />
+            </key>
+            <one-to-many class="Entity.Licencia" />
+        </set>
+    </class>
+</hibernate-mapping>

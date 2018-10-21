@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21/10/2018 17:24:19 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.Costolicencia" table="costolicencia" schema="public" optimistic-lock="version">
+        <composite-id name="id" class="Entity.CostolicenciaId">
+            <key-property name="claselicencia" type="short">
+                <column name="claselicencia" />
+            </key-property>
+            <key-property name="vigencia" type="int">
+                <column name="vigencia" />
+            </key-property>
+        </composite-id>
+        <property name="precio" type="java.lang.Integer">
+            <column name="precio" />
+        </property>
+    </class>
+</hibernate-mapping>
