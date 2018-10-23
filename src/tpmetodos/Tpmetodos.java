@@ -5,7 +5,9 @@
  */
 package tpmetodos;
 
+import DAOs.SexoDAO;
 import DAOs.UsuarioDAO;
+import Entity.Sexo;
 import Entity.Usuario;
 
 /**
@@ -19,6 +21,7 @@ public class Tpmetodos {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+       
 
     }
     
