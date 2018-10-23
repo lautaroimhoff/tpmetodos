@@ -6,7 +6,7 @@
     <class name="Entity.Nacionalidad" table="nacionalidad" schema="public" optimistic-lock="version">
         <id name="idnacionalidad" type="int">
             <column name="idnacionalidad" />
-            <generator class="assigned" />
+            <generator class="identity"></generator>
         </id>
         <property name="nacionalidad" type="string">
             <column name="nacionalidad" length="50" not-null="true" />

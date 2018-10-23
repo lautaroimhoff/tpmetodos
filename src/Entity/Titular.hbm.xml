@@ -6,7 +6,7 @@
     <class name="Entity.Titular" table="titular" schema="public" optimistic-lock="version">
         <id name="idtitular" type="int">
             <column name="idtitular" />
-            <generator class="assigned" />
+            <generator class="identity"></generator>
         </id>
         <many-to-one name="gruposanguineo" class="Entity.Gruposanguineo" fetch="select">
             <column name="idgruposanguineo" not-null="true" />

@@ -6,7 +6,7 @@
     <class name="Entity.Categorialicencia" table="categorialicencia" schema="public" optimistic-lock="version">
         <id name="idcategorialicencia" type="int">
             <column name="idcategorialicencia" />
-            <generator class="assigned" />
+            <generator class="identity"></generator>
         </id>
         <property name="categorialicencia" type="string">
             <column name="categorialicencia" length="50" not-null="true" />

@@ -6,7 +6,7 @@
     <class name="Entity.Gruposanguineo" table="gruposanguineo" schema="public" optimistic-lock="version">
         <id name="idgruposanguineo" type="int">
             <column name="idgruposanguineo" />
-            <generator class="assigned" />
+            <generator class="identity"></generator>
         </id>
         <property name="gruposanguineo" type="string">
             <column name="gruposanguineo" length="50" not-null="true" />

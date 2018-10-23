@@ -21,8 +21,11 @@ public class Tpmetodos {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-       
-
+        
+       SexoDAO sexo = new SexoDAO();
+       Sexo sex = new Sexo();
+       sex = sexo.obtenSexo(1);
+       System.out.print(sex.getSexo());
     }
     
 }
