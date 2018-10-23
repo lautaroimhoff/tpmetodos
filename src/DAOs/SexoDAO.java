@@ -81,11 +81,9 @@ public class SexoDAO
         { 
             iniciaOperacion(); 
             sexo = (Sexo) sesion.get(Sexo.class, idSexo); 
-        } finally 
-        { 
+        }finally{ 
             sesion.close(); 
-        }  
-
+        }
         return sexo; 
     }  
      public Sexo obtenSexo(String nombreSexo) throws HibernateException 
