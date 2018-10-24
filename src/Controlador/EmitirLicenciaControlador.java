@@ -32,8 +32,8 @@ public class EmitirLicenciaControlador implements ActionListener {
     }
     
     public EmitirLicenciaControlador(EmitirLicenciaModelo modelo, EmitirLicenciaVista vista){
-        this.emitirLicenciaModelo=emitirLicenciaModelo;
-        this.emitirLicenciaVista=emitirLicenciaVista;
+        this.emitirLicenciaModelo=modelo;
+        this.emitirLicenciaVista=vista;
     }
     
     public void iniciar(){
