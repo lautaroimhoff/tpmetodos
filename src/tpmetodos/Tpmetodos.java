@@ -23,24 +23,22 @@ public class Tpmetodos {
     
     private Session sesion = HibernateUtil.getSessionFactory().openSession();
    
-    public static void main(String[] args) {
-        // TODO code application logic here
-      
-      SexoDAO sexo = new SexoDAO();
+    public static void main(String[] args) {      
+      /*SexoDAO sexo = new SexoDAO();
       Sexo sex = new Sexo();
       sex = sexo.obtenSexo(1);
       System.out.print(sex.getSexo());
       sex = sexo.obtenSexo(2);
       System.out.print(sex.getSexo());
       
-     HibernateUtil.closeSessionFactory();
-     
+     HibernateUtil.closeSessionFactory();*/
      
      //Creacion vista emitir licencia
      EmitirLicenciaModelo  emitirLicenciaModelo = new EmitirLicenciaModelo();
      EmitirLicenciaVista emitirLicenciaVista = new EmitirLicenciaVista();
      EmitirLicenciaControlador emitirLicenciaControlador = new EmitirLicenciaControlador(emitirLicenciaModelo, emitirLicenciaVista);
      
+     emitirLicenciaVista.concetaControlador(emitirLicenciaControlador);
      emitirLicenciaControlador.iniciar();
      emitirLicenciaVista.setVisible(true);
     }
