@@ -7,7 +7,6 @@ package Modelo;
 
 import Entity.Categorialicencia;
 import Entity.Claselicencia;
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -22,29 +21,18 @@ public class EmitirLicenciaModelo {
     private Date fechaEmision;
     private Date fechaVencimiento;
     private Claselicencia claseLicencia;
-    private ArrayList<Categorialicencia> listaCategoria;
+    private Categorialicencia categoriaLicencia;
 
     public EmitirLicenciaModelo() {
-        this.listaCategoria=new ArrayList<Categorialicencia>();
        
     }
-    
-    public void emitir(){
-        //implementar
-    }
-    
-    public void cancelar(){
-        
-    }
-    
-    
 
-    public ArrayList<Categorialicencia> getListaCategoria() {
-        return listaCategoria;
+    public Categorialicencia getCategoriaLicencia() {
+        return categoriaLicencia;
     }
 
-    public void setListaCategoria(ArrayList<Categorialicencia> listaCategoria) {
-        this.listaCategoria = listaCategoria;
+    public void setCategoriaLicencia(Categorialicencia categoriaLicencia) {
+        this.categoriaLicencia = categoriaLicencia;
     }
 
     public String getObservacion() {

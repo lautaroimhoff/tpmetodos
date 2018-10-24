@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Entity.Licencia;
 import Modelo.EmitirLicenciaModelo;
 import Vista.EmitirLicenciaVista;
 import java.awt.event.ActionEvent;
@@ -24,7 +25,7 @@ public class EmitirLicenciaControlador implements ActionListener {
         String comando = e.getActionCommand();
         switch(comando){
             case "ACEPTAR":
-                //implementar
+                //Crear un objeto Licencia e inicializarlo con los datos ingresados en la pantalla
                 break;
             case "CANCELAR":
                 this.emitirLicenciaVista.setVisible(false);

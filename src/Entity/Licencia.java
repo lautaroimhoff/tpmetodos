@@ -10,7 +10,7 @@ import java.util.Date;
 public class Licencia  implements java.io.Serializable {
 
 
-     private int numerolicencia;
+     private static int numerolicencia = 0;
      private Categorialicencia categorialicencia;
      private Claselicencia claselicencia;
      private Titular titular;
@@ -23,6 +23,7 @@ public class Licencia  implements java.io.Serializable {
      private Date fechavencimiento;
 
     public Licencia() {
+        this.numerolicencia++;
     }
 
 	
