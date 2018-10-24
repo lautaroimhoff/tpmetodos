@@ -5,11 +5,14 @@
  */
 package tpmetodos;
 
+import Controlador.EmitirLicenciaControlador;
 import DAOs.SexoDAO;
 import DAOs.UsuarioDAO;
 import Entity.Sexo;
 import Entity.Usuario;
 import DAOs.HibernateUtil;
+import Modelo.EmitirLicenciaModelo;
+import Vista.EmitirLicenciaVista;
 import org.hibernate.Session;
 
 /**
@@ -31,6 +34,15 @@ public class Tpmetodos {
       System.out.print(sex.getSexo());
       
      HibernateUtil.closeSessionFactory();
+     
+     
+     //Creacion vista emitir licencia
+     EmitirLicenciaModelo  emitirLicenciaModelo = new EmitirLicenciaModelo();
+     EmitirLicenciaVista emitirLicenciaVista = new EmitirLicenciaVista();
+     EmitirLicenciaControlador emitirLicenciaControlador = new EmitirLicenciaControlador(emitirLicenciaModelo, emitirLicenciaVista);
+     
+     emitirLicenciaControlador.iniciar();
+     emitirLicenciaVista.setVisible(true);
     }
     
 }
