@@ -135,9 +135,9 @@ public class UIEmitirLicencia extends javax.swing.JFrame {
                     .addComponent(tfObservacion, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
-                        .addComponent(jLabel4)
                         .addComponent(lblFechaVencimiento))
                     .addComponent(dccFechaEmision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -201,11 +201,11 @@ public class UIEmitirLicencia extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAceptar;
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JComboBox<String> cbListaCategoria;
-    private javax.swing.JComboBox<String> cbListaClaseLicencia;
-    private datechooser.beans.DateChooserCombo dccFechaEmision;
+    public javax.swing.JButton btnAceptar;
+    public javax.swing.JButton btnCancelar;
+    public javax.swing.JComboBox<String> cbListaCategoria;
+    public javax.swing.JComboBox<String> cbListaClaseLicencia;
+    public datechooser.beans.DateChooserCombo dccFechaEmision;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -215,9 +215,9 @@ public class UIEmitirLicencia extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel lblFechaVencimiento;
-    private javax.swing.JTextField tfApellidoEmpleado;
-    private javax.swing.JTextField tfNombreEmpleado;
-    private javax.swing.JTextField tfObservacion;
+    public javax.swing.JLabel lblFechaVencimiento;
+    public javax.swing.JTextField tfApellidoEmpleado;
+    public javax.swing.JTextField tfNombreEmpleado;
+    public javax.swing.JTextField tfObservacion;
     // End of variables declaration//GEN-END:variables
 }
