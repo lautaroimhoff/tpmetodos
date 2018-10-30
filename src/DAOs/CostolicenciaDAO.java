@@ -6,6 +6,7 @@
 package DAOs;
 
 import Entity.Costolicencia;
+import Entity.CostolicenciaId;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -73,7 +74,7 @@ public class CostolicenciaDAO
         } 
     }  
 
-    public Costolicencia obtenCostolicencia(int idCostolicencia) throws HibernateException 
+    public Costolicencia obtenCostolicencia(CostolicenciaId idCostolicencia) throws HibernateException 
     { 
         Costolicencia costolicencia = null;  
         try 
@@ -87,20 +88,7 @@ public class CostolicenciaDAO
 
         return costolicencia; 
     }  
-     public Costolicencia obtenCostolicencia(String nombreCostolicencia) throws HibernateException 
-    { 
-        Costolicencia costolicencia = null;  
-        try 
-        { 
-            iniciaOperacion(); 
-            costolicencia = (Costolicencia) sesion.createQuery("from Costolicencia where nombreCostolicencia='"+nombreCostolicencia.trim()+"'").uniqueResult();
-        } finally 
-        { 
-            sesion.close(); 
-        }  
-
-        return costolicencia; 
-    }  
+     
 
     public List<Costolicencia> obtenListaCostolicencias() throws HibernateException 
     { 

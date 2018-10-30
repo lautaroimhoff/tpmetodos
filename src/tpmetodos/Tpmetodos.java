@@ -6,11 +6,14 @@
 package tpmetodos;
 
 import Controlador.EmitirLicenciaControlador;
+import DAOs.CostolicenciaDAO;
 import DAOs.SexoDAO;
 import DAOs.UsuarioDAO;
 import Entity.Sexo;
 import Entity.Usuario;
 import DAOs.HibernateUtil;
+import Entity.Costolicencia;
+import Entity.CostolicenciaId;
 import Modelo.EmitirLicenciaModelo;
 import Vista.EmitirLicenciaVista;
 import org.hibernate.Session;
@@ -31,16 +34,33 @@ public class Tpmetodos {
       sex = sexo.obtenSexo(2);
       System.out.print(sex.getSexo());
       
-     HibernateUtil.closeSessionFactory();
+   //  HibernateUtil.closeSessionFactory();
      
      //Creacion vista emitir licencia
      EmitirLicenciaModelo  emitirLicenciaModelo = new EmitirLicenciaModelo();
      EmitirLicenciaVista emitirLicenciaVista = new EmitirLicenciaVista();
      EmitirLicenciaControlador emitirLicenciaControlador = new EmitirLicenciaControlador(emitirLicenciaModelo, emitirLicenciaVista);
-     
      emitirLicenciaVista.concetaControlador(emitirLicenciaControlador);
      emitirLicenciaControlador.iniciar();
      emitirLicenciaVista.setVisible(true);
+     
+     
+     //Como guardar costos licencia 
+     Costolicencia costo = new Costolicencia(); 
+     CostolicenciaId id = new CostolicenciaId(); 
+     id.setClaselicencia((short)1); //supongo qe 1 es la "A" 
+     id.setVigencia(5); // vigencia 5 años
+     costo.setId(id); // aca seteo la clave compuesta. 
+     costo.setPrecio(40); //para 5 años cuesta $40
+     CostolicenciaDAO dao = new CostolicenciaDAO();
+     dao.guardaCostolicencia(costo);
+     System.out.println("Licencia guardada");
+     //Para obtener una licencia. 
+     CostolicenciaId id2 = new CostolicenciaId((short)1,5); // clase "A" = 1 , 5 Años de vigencia. 
+     Costolicencia ccosto = dao.obtenCostolicencia(id);
+     System.out.println("Costo licencia: " +  ccosto.getPrecio());
+     
+     
     }
     
 }
