@@ -3,18 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Lautaro/tpmetodos/src/Entity/Titular.java</file>
-            <file>file:/C:/Users/Lautaro/tpmetodos/src/Entity/Sexo.hbm.xml</file>
-            <file>file:/C:/Users/Lautaro/tpmetodos/src/hibernate.cfg.xml</file>
-            <file>file:/C:/Users/Lautaro/tpmetodos/src/Entity/Usuario.java</file>
-            <file>file:/C:/Users/Lautaro/tpmetodos/src/Entity/Licencia.java</file>
-            <file>file:/C:/Users/Lautaro/tpmetodos/src/DAOs/HibernateUtil.java</file>
-            <file>file:/C:/Users/Lautaro/tpmetodos/src/DAOs/UsuarioDAO.java</file>
-            <file>file:/C:/Users/Lautaro/tpmetodos/src/hibernate.reveng.xml</file>
-            <file>file:/C:/Users/Lautaro/tpmetodos/src/tpmetodos/Tpmetodos.java</file>
-            <file>file:/C:/Users/Lautaro/tpmetodos/src/Entity/Licencia.hbm.xml</file>
-            <file>file:/C:/Users/Lautaro/tpmetodos/src/DAOs/SexoDAO.java</file>
-            <file>file:/C:/Users/Lautaro/tpmetodos/src/Vista/EmitirLicenciaVista.java</file>
+            <file>file:/C:/Users/jaque/Documents/NetBeansProjects/tpmetodos/src/tpmetodos/Tpmetodos.java</file>
+            <file>file:/C:/Users/jaque/Documents/NetBeansProjects/tpmetodos/src/Controlador/EmitirLicenciaControlador.java</file>
+            <file>file:/C:/Users/jaque/Documents/NetBeansProjects/tpmetodos/src/Modelo/EmitirLicenciaModelo.java</file>
+            <file>file:/C:/Users/jaque/Documents/NetBeansProjects/tpmetodos/src/DAOs/CategorialicenciaDAO.java</file>
+            <file>file:/C:/Users/jaque/Documents/NetBeansProjects/tpmetodos/src/Vista/EmitirLicenciaVista.java</file>
         </group>
     </open-files>
 </project-private>
