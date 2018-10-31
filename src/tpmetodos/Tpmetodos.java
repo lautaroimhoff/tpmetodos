@@ -8,13 +8,11 @@ package tpmetodos;
 import Controlador.EmitirLicenciaControlador;
 import DAOs.CostolicenciaDAO;
 import DAOs.SexoDAO;
-import DAOs.UsuarioDAO;
 import Entity.Sexo;
-import Entity.Usuario;
 import DAOs.HibernateUtil;
 import Entity.Costolicencia;
 import Entity.CostolicenciaId;
-import Modelo.EmitirLicenciaModelo;
+import Entity.Licencia;
 import Vista.EmitirLicenciaVista;
 import org.hibernate.Session;
 
@@ -37,9 +35,9 @@ public class Tpmetodos {
    //  HibernateUtil.closeSessionFactory();
      
      //Creacion vista emitir licencia
-     EmitirLicenciaModelo  emitirLicenciaModelo = new EmitirLicenciaModelo();
+     Licencia  licenciaModelo = new Licencia();
      EmitirLicenciaVista emitirLicenciaVista = new EmitirLicenciaVista();
-     EmitirLicenciaControlador emitirLicenciaControlador = new EmitirLicenciaControlador(emitirLicenciaModelo, emitirLicenciaVista);
+     EmitirLicenciaControlador emitirLicenciaControlador = new EmitirLicenciaControlador(licenciaModelo, emitirLicenciaVista);
      emitirLicenciaVista.concetaControlador(emitirLicenciaControlador);
      emitirLicenciaControlador.iniciar();
      emitirLicenciaVista.setVisible(true);
@@ -59,8 +57,6 @@ public class Tpmetodos {
      CostolicenciaId id2 = new CostolicenciaId((short)1,5); // clase "A" = 1 , 5 Años de vigencia. 
      Costolicencia ccosto = dao.obtenCostolicencia(id);
      System.out.println("Costo licencia: " +  ccosto.getPrecio());
-     
-     
     }
     
 }
