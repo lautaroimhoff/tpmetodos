@@ -93,7 +93,7 @@ public class ClaselicenciaDAO
         try 
         { 
             iniciaOperacion(); 
-            claselicencia = (Claselicencia) sesion.createQuery("from Claselicencia where nombreClaselicencia='"+nombreClaselicencia.trim()+"'").uniqueResult();
+            claselicencia = (Claselicencia) sesion.createQuery("from Claselicencia where claselicencia='"+nombreClaselicencia.trim()+"'").uniqueResult();
         } finally 
         { 
             sesion.close(); 
