@@ -17,8 +17,7 @@ public class Categorialicencia  implements java.io.Serializable {
 
     public Categorialicencia() {
     }
-
-	
+    
     public Categorialicencia(int idcategorialicencia, String categorialicencia) {
         this.idcategorialicencia = idcategorialicencia;
         this.categorialicencia = categorialicencia;
