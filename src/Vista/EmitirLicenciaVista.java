@@ -124,7 +124,7 @@ public class EmitirLicenciaVista extends javax.swing.JFrame {
                                 .addComponent(jLabel8)
                                 .addGap(62, 62, 62)
                                 .addComponent(tfNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(36, Short.MAX_VALUE))
+                        .addContainerGap(17, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnAceptar)
@@ -189,7 +189,7 @@ public class EmitirLicenciaVista extends javax.swing.JFrame {
     public javax.swing.JButton btnCancelar;
     public javax.swing.JComboBox<String> cbListaCategoria;
     public javax.swing.JComboBox<String> cbListaClaseLicencia;
-    public datechooser.beans.DateChooserCombo dccFechaEmision;
+    private datechooser.beans.DateChooserCombo dccFechaEmision;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
