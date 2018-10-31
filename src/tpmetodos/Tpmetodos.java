@@ -5,6 +5,7 @@
  */
 package tpmetodos;
 
+import Controlador.AltaTitularControlador;
 import Controlador.EmitirLicenciaControlador;
 import DAOs.CostolicenciaDAO;
 import DAOs.SexoDAO;
@@ -13,6 +14,8 @@ import DAOs.HibernateUtil;
 import Entity.Costolicencia;
 import Entity.CostolicenciaId;
 import Entity.Licencia;
+import Entity.Titular;
+import Vista.AltaTitularVista;
 import Vista.EmitirLicenciaVista;
 import org.hibernate.Session;
 
@@ -35,12 +38,21 @@ public class Tpmetodos {
    //  HibernateUtil.closeSessionFactory();
      
      //Creacion vista emitir licencia
-     Licencia  licenciaModelo = new Licencia();
-     EmitirLicenciaVista emitirLicenciaVista = new EmitirLicenciaVista();
-     EmitirLicenciaControlador emitirLicenciaControlador = new EmitirLicenciaControlador(licenciaModelo, emitirLicenciaVista);
-     emitirLicenciaVista.concetaControlador(emitirLicenciaControlador);
-     emitirLicenciaControlador.iniciar();
-     emitirLicenciaVista.setVisible(true);
+//     Licencia  licenciaModelo = new Licencia();
+//     EmitirLicenciaVista emitirLicenciaVista = new EmitirLicenciaVista();
+//     EmitirLicenciaControlador emitirLicenciaControlador = new EmitirLicenciaControlador(licenciaModelo, emitirLicenciaVista);
+//     emitirLicenciaVista.concetaControlador(emitirLicenciaControlador);
+//     emitirLicenciaControlador.iniciar();
+//     emitirLicenciaVista.setVisible(true);
+//     
+     
+     //Creacion vista alta titular
+     Titular titularModelo = new Titular();
+     AltaTitularVista altaTitularVista = new AltaTitularVista();
+     AltaTitularControlador altaTitularControlador = new AltaTitularControlador(titularModelo, altaTitularVista);
+     altaTitularVista.concetaControlador(altaTitularControlador);
+     altaTitularControlador.iniciar();
+     altaTitularVista.setVisible(true);
      
      
      //Como guardar costos licencia 
