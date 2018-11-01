@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import DAOs.TitularDAO;
 import Entity.Titular;
 import Vista.AltaTitularVista;
 import java.awt.event.ActionEvent;
@@ -18,6 +19,7 @@ public class AltaTitularControlador implements ActionListener{
     
     private Titular titularModelo;
     private AltaTitularVista altaTitularVista;
+    private TitularDAO titularDAO;
    
 
     @Override
@@ -25,17 +27,24 @@ public class AltaTitularControlador implements ActionListener{
         String comando = e.getActionCommand();
         switch(comando){
             case "FINALIZAR CARGA":
-                //Crear un objeto titular e inicializarlo con los datos ingresados en la pantalla
-               
+                if(!validarCamposVista()){
+                    System.out.println("completa los campos gil");
+                }
+                else{
+                    //Crear un objeto titular e inicializarlo con los datos ingresados en la pantalla
+                    
+                }
                 break;
             case "CANCELAR":
                 this.altaTitularVista.setVisible(false);
+                System.exit(0);
         }
     }
     
     public AltaTitularControlador(Titular modelo, AltaTitularVista vista){
         this.titularModelo=modelo;
         this.altaTitularVista=vista;
+        this.titularDAO = new TitularDAO();
     }
     
     public void iniciar(){
@@ -43,4 +52,32 @@ public class AltaTitularControlador implements ActionListener{
         altaTitularVista.setLocationRelativeTo(null);
     }
     
+    public boolean validarCamposVista(){
+        if(altaTitularVista.tfNombreTitular.getText().length()==0){
+            return false;
+        }
+        if(altaTitularVista.tfApellidoTitular.getText().length()==0){
+            return false;
+        }
+        if(altaTitularVista.tfDireccionTitular.getText().length()==0){
+            return false;
+        }
+        if(altaTitularVista.tfNumDocumetoTitular.getText().length()==0){
+            return false;
+        }
+        if(!altaTitularVista.optFemeninoTitular.isSelected() && !altaTitularVista.optMasculinoTitular.isSelected()){
+            return false;
+        }
+        if(!altaTitularVista.optDonanteSiTitular.isSelected() && !altaTitularVista.optDonanteNoTitular.isSelected()){
+            return false;
+        }
+        
+        for(Titular titular: titularDAO.obtenListaTitulars()){
+            if(titular.getNumerodocumento().equals(Integer.parseInt(altaTitularVista.tfNumDocumetoTitular.getText().toString()))){
+                return false;
+            }
+        }
+        
+        return false;
+    }
 }

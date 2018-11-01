@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Gestor.ClaseLicenciaGestor;
 import DAOs.CostolicenciaDAO;
 import Entity.Costolicencia;
 import Entity.CostolicenciaId;
@@ -17,7 +18,7 @@ public class CalcularCosto {
      private static int CostoAdministrativo = 8;
 
     public static int CalcularCosto(String claseLicencia, int vigencia){
-        int idClaseLicencia = GestorClaseLicencia.getIdClaseLicencia(claseLicencia);
+        int idClaseLicencia = ClaseLicenciaGestor.getIdClaseLicencia(claseLicencia);
         Costolicencia costo; 
         CostolicenciaId id = new CostolicenciaId((short)idClaseLicencia,vigencia); 
         CostolicenciaDAO dao = new CostolicenciaDAO();
