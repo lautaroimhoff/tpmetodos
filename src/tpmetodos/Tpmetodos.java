@@ -7,17 +7,16 @@ package tpmetodos;
 
 import Controlador.AltaTitularControlador;
 import Controlador.EmitirLicenciaControlador;
-import DAOs.CostolicenciaDAO;
-import DAOs.SexoDAO;
-import Entity.Sexo;
-import DAOs.HibernateUtil;
-import Entity.Costolicencia;
-import Entity.CostolicenciaId;
-import Entity.Licencia;
+import DAOs.HibernateUtil;;
 import Entity.Titular;
 import Vista.AltaTitularVista;
 import Vista.EmitirLicenciaVista;
 import org.hibernate.Session;
+import Controlador.CalcularVigencia;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -27,15 +26,8 @@ public class Tpmetodos {
     
     private Session sesion = HibernateUtil.getSessionFactory().openSession();
    
-    public static void main(String[] args) {      
-      SexoDAO sexo = new SexoDAO();
-      Sexo sex = new Sexo();
-      sex = sexo.obtenSexo(1);
-      System.out.print(sex.getSexo());
-      sex = sexo.obtenSexo(2);
-      System.out.print(sex.getSexo());
-      
-   //  HibernateUtil.closeSessionFactory();
+    public static void main(String[] args) {       
+   //  
      
      //Creacion vista emitir licencia
      Licencia  licenciaModelo = new Licencia();
@@ -47,28 +39,20 @@ public class Tpmetodos {
      
      
      //Creacion vista alta titular
-     Titular titularModelo = new Titular();
+    /* Titular titularModelo = new Titular();
      AltaTitularVista altaTitularVista = new AltaTitularVista();
      AltaTitularControlador altaTitularControlador = new AltaTitularControlador(titularModelo, altaTitularVista);
      altaTitularVista.concetaControlador(altaTitularControlador);
      altaTitularControlador.iniciar();
-     altaTitularVista.setVisible(true);
-     
-     
-     //Como guardar costos licencia 
-     Costolicencia costo = new Costolicencia(); 
-     CostolicenciaId id = new CostolicenciaId(); 
-     id.setClaselicencia((short)1); //supongo qe 1 es la "A" 
-     id.setVigencia(5); // vigencia 5 años
-     costo.setId(id); // aca seteo la clave compuesta. 
-     costo.setPrecio(40); //para 5 años cuesta $40
-     CostolicenciaDAO dao = new CostolicenciaDAO();
-     dao.guardaCostolicencia(costo);
-     System.out.println("Licencia guardada");
-     //Para obtener una licencia. 
-     CostolicenciaId id2 = new CostolicenciaId((short)1,5); // clase "A" = 1 , 5 Años de vigencia. 
-     Costolicencia ccosto = dao.obtenCostolicencia(id);
-     System.out.println("Costo licencia: " +  ccosto.getPrecio());
+     altaTitularVista.setVisible(true);*/
+    
+    /*Date date = new Date(2000,10,25);
+    Calendar calendar = CalcularVigencia.CalcularVigencia(date, "Renovación");
+    int duracion = CalcularVigencia.getAñosVigencia(calendar);
+    System.out.println(duracion);
+    */
+    
+     //HibernateUtil.closeSessionFactory();
     }
     
 }
