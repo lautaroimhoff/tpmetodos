@@ -28,10 +28,10 @@ public class AltaTitularControlador implements ActionListener{
         switch(comando){
             case "FINALIZAR CARGA":
                 if(!validarCamposVista()){
-                    System.out.println("completa los campos gil");
+                    System.out.println("completa los campos gil"); 
                 }
                 else{
-                    //Crear un objeto titular e inicializarlo con los datos ingresados en la pantalla
+                    //Crear un objeto titular e inicializarlo con los datos ingresados en la pantall
                     
                 }
                 break;
