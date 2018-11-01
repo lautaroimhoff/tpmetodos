@@ -39,6 +39,7 @@ public class EmitirLicenciaControlador implements ActionListener {
                 break;
             case "CANCELAR":
                 this.emitirLicenciaVista.setVisible(false);
+                System.exit(0);
         }
     }
     
