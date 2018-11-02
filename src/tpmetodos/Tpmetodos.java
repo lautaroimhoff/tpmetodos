@@ -5,18 +5,14 @@
  */
 package tpmetodos;
 
-import Controlador.AltaTitularControlador;
-import Controlador.EmitirLicenciaControlador;
+import ControladoresGestores.AltaTitularControlador;
+import ControladoresGestores.EmitirLicenciaControlador;
 import DAOs.HibernateUtil;;
-import Entity.Titular;
-import Vista.AltaTitularVista;
 import Vista.EmitirLicenciaVista;
 import org.hibernate.Session;
-import Controlador.CalcularVigencia;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import Entity.Licencia;
+import Entity.Titular;
+import Vista.AltaTitularVista;
 
 /**
  *
@@ -30,21 +26,21 @@ public class Tpmetodos {
    //  
      
      //Creacion vista emitir licencia
-     Licencia  licenciaModelo = new Licencia();
-     EmitirLicenciaVista emitirLicenciaVista = new EmitirLicenciaVista();
-     EmitirLicenciaControlador emitirLicenciaControlador = new EmitirLicenciaControlador(licenciaModelo, emitirLicenciaVista);
-     emitirLicenciaVista.concetaControlador(emitirLicenciaControlador);
-     emitirLicenciaControlador.iniciar();
-     emitirLicenciaVista.setVisible(true);
+//     Licencia  licenciaModelo = new Licencia();
+//     EmitirLicenciaVista emitirLicenciaVista = new EmitirLicenciaVista();
+//     EmitirLicenciaControlador emitirLicenciaControlador = new EmitirLicenciaControlador(licenciaModelo, emitirLicenciaVista);
+//     emitirLicenciaVista.concetaControlador(emitirLicenciaControlador);
+//     emitirLicenciaControlador.iniciar();
+//     emitirLicenciaVista.setVisible(true);
      
      
      //Creacion vista alta titular
-    /* Titular titularModelo = new Titular();
+    Titular titularModelo = new Titular();
      AltaTitularVista altaTitularVista = new AltaTitularVista();
      AltaTitularControlador altaTitularControlador = new AltaTitularControlador(titularModelo, altaTitularVista);
      altaTitularVista.concetaControlador(altaTitularControlador);
      altaTitularControlador.iniciar();
-     altaTitularVista.setVisible(true);*/
+     altaTitularVista.setVisible(true);
     
     /*Date date = new Date(2000,10,25);
     Calendar calendar = CalcularVigencia.CalcularVigencia(date, "Renovación");

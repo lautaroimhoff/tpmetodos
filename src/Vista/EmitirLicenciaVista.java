@@ -5,7 +5,7 @@
  */
 package Vista;
 
-import Controlador.EmitirLicenciaControlador;
+import ControladoresGestores.EmitirLicenciaControlador;
 
 /**
  *
