@@ -5,16 +5,10 @@
  */
 package tpmetodos;
 
-import ControladoresGestores.AltaTitularControlador;
-import ControladoresGestores.EmitirLicenciaControlador;
 import ControladoresGestores.MenuPrincipalControlador;
-import DAOs.HibernateUtil;;
-import Vista.EmitirLicenciaVista;
-import org.hibernate.Session;
-import Entity.Licencia;
-import Entity.Titular;
-import Vista.AltaTitularVista;
 import Vista.MenuPrincipalVista;
+import org.hibernate.Session;
+;
 
 /**
  *
@@ -22,13 +16,9 @@ import Vista.MenuPrincipalVista;
  */
 public class Tpmetodos {
     
-    private Session sesion = HibernateUtil.getSessionFactory().openSession();
+    //private Session sesion = HibernateUtil.getSessionFactory().openSession();
    
     public static void main(String[] args) {     
-   
-        
-     
-     
         //Creacion vista alta titular
         MenuPrincipalVista menuPrincipalVista = new MenuPrincipalVista();
         MenuPrincipalControlador menuPrincipalControlador = new MenuPrincipalControlador(menuPrincipalVista);

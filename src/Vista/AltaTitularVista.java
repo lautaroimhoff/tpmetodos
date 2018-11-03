@@ -48,7 +48,6 @@ public class AltaTitularVista extends javax.swing.JFrame {
         optFemeninoTitular = new javax.swing.JRadioButton();
         optMasculinoTitular = new javax.swing.JRadioButton();
         jLabel9 = new javax.swing.JLabel();
-        dccFechaNacimientoTitular = new datechooser.beans.DateChooserCombo();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         cbClaseLicenciaTitular = new javax.swing.JComboBox<>();
@@ -151,10 +150,7 @@ public class AltaTitularVista extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dccFechaNacimientoTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel9)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel12)
@@ -229,10 +225,8 @@ public class AltaTitularVista extends javax.swing.JFrame {
                             .addComponent(optMasculinoTitular)
                             .addComponent(jLabel8))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(dccFechaNacimientoTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tfDireccionTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10))
@@ -276,7 +270,6 @@ public class AltaTitularVista extends javax.swing.JFrame {
     public javax.swing.JComboBox<String> cbNacionalidadTitular;
     public javax.swing.JComboBox<String> cbRHTitular;
     public javax.swing.JComboBox<String> cbTipoDocumentoTitular;
-    public datechooser.beans.DateChooserCombo dccFechaNacimientoTitular;
     public javax.swing.ButtonGroup donante;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
