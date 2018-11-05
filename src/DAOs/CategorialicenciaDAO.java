@@ -93,7 +93,7 @@ public class CategorialicenciaDAO
         try 
         { 
             iniciaOperacion(); 
-            categorialicencia = (Categorialicencia) sesion.createQuery("from Categorialicencia where nombreCategorialicencia='"+nombreCategorialicencia.trim()+"'").uniqueResult();
+            categorialicencia = (Categorialicencia) sesion.createQuery("from Categorialicencia where categorialicencia='"+nombreCategorialicencia.trim()+"'").uniqueResult();
         } finally 
         { 
             sesion.close(); 

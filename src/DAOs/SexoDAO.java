@@ -92,7 +92,7 @@ public class SexoDAO
         try 
         { 
             iniciaOperacion(); 
-            sexo = (Sexo) sesion.createQuery("from Sexo where nombreSexo='"+nombreSexo.trim()+"'").uniqueResult();
+            sexo = (Sexo) sesion.createQuery("from Sexo where sexo='"+nombreSexo.trim()+"'").uniqueResult();
         } finally 
         { 
             sesion.close(); 

@@ -93,7 +93,7 @@ public class TipodocumentoDAO
         try 
         { 
             iniciaOperacion(); 
-            tipodocumento = (Tipodocumento) sesion.createQuery("from Tipodocumento where nombreTipodocumento='"+nombreTipodocumento.trim()+"'").uniqueResult();
+            tipodocumento = (Tipodocumento) sesion.createQuery("from Tipodocumento where tipodocumento='"+nombreTipodocumento.trim()+"'").uniqueResult();
         } finally 
         { 
             sesion.close(); 

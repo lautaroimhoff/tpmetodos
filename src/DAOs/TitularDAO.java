@@ -93,7 +93,7 @@ public class TitularDAO
         try 
         { 
             iniciaOperacion(); 
-            titular = (Titular) sesion.createQuery("from Titular where nombreTitular='"+nombreTitular.trim()+"'").uniqueResult();
+            titular = (Titular) sesion.createQuery("from Titular where nombre='"+nombreTitular.trim()+"'").uniqueResult();
         } finally 
         { 
             sesion.close(); 

@@ -93,7 +93,7 @@ public class UsuarioDAO
         try 
         { 
             iniciaOperacion(); 
-            usuario = (Usuario) sesion.createQuery("from Usuario where nombreUsuario='"+nombreUsuario.trim()+"'").uniqueResult();
+            usuario = (Usuario) sesion.createQuery("from Usuario where nombreusuario='"+nombreUsuario.trim()+"'").uniqueResult();
         } finally 
         { 
             sesion.close(); 

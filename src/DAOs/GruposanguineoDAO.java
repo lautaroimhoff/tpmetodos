@@ -93,7 +93,7 @@ public class GruposanguineoDAO
         try 
         { 
             iniciaOperacion(); 
-            gruposanguineo = (Gruposanguineo) sesion.createQuery("from Gruposanguineo where nombreGruposanguineo='"+nombreGruposanguineo.trim()+"'").uniqueResult();
+            gruposanguineo = (Gruposanguineo) sesion.createQuery("from Gruposanguineo where gruposanguineo='"+nombreGruposanguineo.trim()+"'").uniqueResult();
         } finally 
         { 
             sesion.close(); 
