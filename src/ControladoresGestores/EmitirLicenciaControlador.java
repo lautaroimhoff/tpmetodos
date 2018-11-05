@@ -13,6 +13,7 @@ import Entity.Claselicencia;
 import Entity.Licencia;
 import Entity.Usuario;
 import Vista.EmitirLicenciaVista;
+import Vista.MenuPrincipalVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -57,7 +58,11 @@ public class EmitirLicenciaControlador implements ActionListener{
                 break;
             case "CANCELAR":
                 this.emitirLicenciaVista.setVisible(false);
-                System.exit(0);
+                MenuPrincipalVista menuPrincipalVista = new MenuPrincipalVista();
+                MenuPrincipalControlador menuPrincipalControlador = new MenuPrincipalControlador(menuPrincipalVista);
+                menuPrincipalVista.conectaControlador(menuPrincipalControlador);
+                menuPrincipalControlador.iniciar();
+                menuPrincipalVista.setVisible(true);
         }
     }
     
