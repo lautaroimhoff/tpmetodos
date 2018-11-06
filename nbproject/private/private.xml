@@ -5,6 +5,10 @@
         <group>
             <file>file:/C:/Users/Elias%20Capasso/Documents/NetBeansProjects/tpmetodos/src/Vista/EmitirLicenciaVista.java</file>
             <file>file:/C:/Users/Elias%20Capasso/Documents/NetBeansProjects/tpmetodos/src/ControladoresGestores/AltaTitularControlador.java</file>
+            <file>file:/C:/Users/Elias%20Capasso/Documents/NetBeansProjects/tpmetodos/src/Vista/AltaTitularVista.java</file>
+            <file>file:/C:/Users/Elias%20Capasso/Documents/NetBeansProjects/tpmetodos/src/Calculos/CalcularVigencia.java</file>
+            <file>file:/C:/Users/Elias%20Capasso/Documents/NetBeansProjects/tpmetodos/src/Entity/Licencia.java</file>
+            <file>file:/C:/Users/Elias%20Capasso/Documents/NetBeansProjects/tpmetodos/src/Calculos/CalcularCosto.java</file>
             <file>file:/C:/Users/Elias%20Capasso/Documents/NetBeansProjects/tpmetodos/src/ControladoresGestores/EmitirLicenciaControlador.java</file>
         </group>
     </open-files>
