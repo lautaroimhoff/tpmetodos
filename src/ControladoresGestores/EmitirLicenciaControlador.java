@@ -71,9 +71,8 @@ public class EmitirLicenciaControlador implements ActionListener{
             case "CANCELAR":
                 if(!(titular == null)){
                     titularDAO.eliminaTitular(titular);
-                    for(Titular t: titularDAO.obtenListaTitulares()){
-                        System.out.println(t.getApellido() + "\n");
-                    }
+                    
+                    JOptionPane.showMessageDialog(null, "El titular " + titular.getApellido() + " fue eliminado, ya que no posee licencias registradas");
                 }
                 this.emitirLicenciaVista.setVisible(false);
                 MenuPrincipalVista menuPrincipalVista = new MenuPrincipalVista();
@@ -95,11 +94,11 @@ public class EmitirLicenciaControlador implements ActionListener{
             emitirLicenciaVista.cbListaClaseLicencia.addItem(clase.getClaselicencia());
         }
         
-        //Tabla de empleados
-        modeloTablaEmpleados = (DefaultTableModel) emitirLicenciaVista.tablaEmpleados.getModel();
-        for(Usuario empleado: usuarioDAO.obtenListaUsuarios()){
-            Object filaNueva[] = {empleado.getNombreusuario(), empleado.getApellido(), empleado.getNombre(), empleado.getEmail()};
-            modeloTablaEmpleados.addRow(filaNueva);
+        if(!(titular == null)){
+            Usuario empleado = usuarioDAO.obtenUsuario(titular.getIdempleadogestor());
+            emitirLicenciaVista.lblNombreApellidoEmpleado.setText(empleado.getApellido() + " " + empleado.getNombre());
+            emitirLicenciaVista.lblEmailEmpleado.setText(empleado.getEmail());
+            emitirLicenciaVista.lblTelefonoEmpleado.setText(empleado.getNumerotelefono());
         }
         
         //Tabla de titulares

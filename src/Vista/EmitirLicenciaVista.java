@@ -49,12 +49,13 @@ public class EmitirLicenciaVista extends javax.swing.JFrame {
         cbListaClaseLicencia = new javax.swing.JComboBox<>();
         btnCancelar = new javax.swing.JButton();
         btnAceptar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaEmpleados = new javax.swing.JTable();
         dccFechaEmision = new com.toedter.calendar.JDateChooser();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaTitulares = new javax.swing.JTable();
+        lblNombreApellidoEmpleado = new javax.swing.JLabel();
+        lblEmailEmpleado = new javax.swing.JLabel();
+        lblTelefonoEmpleado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,37 +78,6 @@ public class EmitirLicenciaVista extends javax.swing.JFrame {
         btnCancelar.setText("Cancelar");
 
         btnAceptar.setText("Aceptar");
-
-        tablaEmpleados.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Usuario", "Apellido", "Nombre", "Email"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tablaEmpleados);
-        if (tablaEmpleados.getColumnModel().getColumnCount() > 0) {
-            tablaEmpleados.getColumnModel().getColumn(0).setResizable(false);
-            tablaEmpleados.getColumnModel().getColumn(1).setResizable(false);
-            tablaEmpleados.getColumnModel().getColumn(2).setResizable(false);
-            tablaEmpleados.getColumnModel().getColumn(3).setResizable(false);
-        }
 
         jLabel8.setText("Datos del titular:");
 
@@ -141,6 +111,12 @@ public class EmitirLicenciaVista extends javax.swing.JFrame {
             tablaTitulares.getColumnModel().getColumn(2).setResizable(false);
         }
 
+        lblNombreApellidoEmpleado.setText("Nombre y apellido del empleado");
+
+        lblEmailEmpleado.setText("Email del empleado");
+
+        lblTelefonoEmpleado.setText("Telefono del empleado");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -172,8 +148,7 @@ public class EmitirLicenciaVista extends javax.swing.JFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(jLabel6)
                                     .addGap(18, 18, 18)
-                                    .addComponent(cbListaClaseLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cbListaClaseLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(3, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,7 +164,10 @@ public class EmitirLicenciaVista extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNombreApellidoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEmailEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTelefonoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -223,9 +201,13 @@ public class EmitirLicenciaVista extends javax.swing.JFrame {
                         .addGap(37, 37, 37)
                         .addComponent(jLabel7))
                     .addComponent(dccFechaEmision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblNombreApellidoEmpleado)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblEmailEmpleado)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblTelefonoEmpleado)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptar)
                     .addComponent(btnCancelar))
@@ -256,10 +238,11 @@ public class EmitirLicenciaVista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    public javax.swing.JLabel lblEmailEmpleado;
     public javax.swing.JLabel lblFechaVencimiento;
-    public javax.swing.JTable tablaEmpleados;
+    public javax.swing.JLabel lblNombreApellidoEmpleado;
+    public javax.swing.JLabel lblTelefonoEmpleado;
     public javax.swing.JTable tablaTitulares;
     public javax.swing.JTextField tfObservacion;
     // End of variables declaration//GEN-END:variables
