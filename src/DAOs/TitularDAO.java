@@ -102,7 +102,7 @@ public class TitularDAO
         return titular; 
     }   
 
-    public List<Titular> obtenListaTitulars() throws HibernateException 
+    public List<Titular> obtenListaTitulares() throws HibernateException 
     { 
         List<Titular> listaTitulars = null;  
 

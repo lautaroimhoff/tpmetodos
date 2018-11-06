@@ -149,7 +149,7 @@ public class AltaTitularControlador implements ActionListener{
             JOptionPane.showMessageDialog(null, "Debe seleccionar si el titular es donante o no");
             return false;
         }
-        for(Titular titular: titularDAO.obtenListaTitulars()){
+        for(Titular titular: titularDAO.obtenListaTitulares()){
             if(titular.getNumerodocumento().equals(altaTitularVista.tfNumDocumentoTitular.getText())){
                 JOptionPane.showMessageDialog(null, "Documento ya existente");
                 return false;

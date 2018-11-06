@@ -69,12 +69,18 @@ public class EmitirLicenciaControlador implements ActionListener{
                 }
                 break;
             case "CANCELAR":
+                if(!(titular == null)){
+                    titularDAO.eliminaTitular(titular);
+                    for(Titular t: titularDAO.obtenListaTitulares()){
+                        System.out.println(t.getApellido() + "\n");
+                    }
+                }
                 this.emitirLicenciaVista.setVisible(false);
                 MenuPrincipalVista menuPrincipalVista = new MenuPrincipalVista();
                 MenuPrincipalControlador menuPrincipalControlador = new MenuPrincipalControlador(menuPrincipalVista);
                 menuPrincipalVista.conectaControlador(menuPrincipalControlador);
                 menuPrincipalControlador.iniciar();
-                menuPrincipalVista.setVisible(true);
+                menuPrincipalVista.setVisible(true);    
         }
     }
     
@@ -99,7 +105,7 @@ public class EmitirLicenciaControlador implements ActionListener{
         //Tabla de titulares
         modeloTablaTitulares = (DefaultTableModel) emitirLicenciaVista.tablaTitulares.getModel();
         if(titular == null){
-            for(Titular t: titularDAO.obtenListaTitulars()){
+            for(Titular t: titularDAO.obtenListaTitulares()){
                 Object filaNueva[] = {t.getNumerodocumento(), t.getApellido(), t.getNombre()};
                 modeloTablaTitulares.addRow(filaNueva);
             }
