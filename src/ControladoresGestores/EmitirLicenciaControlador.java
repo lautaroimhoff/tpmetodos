@@ -5,6 +5,7 @@
  */
 package ControladoresGestores;
 
+import Calculos.CalcularVigencia;
 import DAOs.CategorialicenciaDAO;
 import DAOs.ClaselicenciaDAO;
 import DAOs.TitularDAO;
@@ -20,6 +21,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -40,6 +43,7 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
     private TitularDAO titularDAO;
     
     private Titular titular;
+    private Date fechaVencimiento = new Date();
     
     private DefaultTableModel modeloTablaTitulares;
     
@@ -68,7 +72,9 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
                 }
                 else{
                     //Crear un objeto Licencia e inicializarlo con los datos ingresados en la pantalla
-                    JOptionPane.showMessageDialog(null, "Titular creado con éxito");
+                    
+                    calcularVencimiento();
+                    JOptionPane.showMessageDialog(null, "Titular creado con éxito\n Fecha de vencieminto: " + fechaVencimiento.toString());
                 }
                 break;
             case "CANCELAR":
@@ -83,7 +89,20 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
                 menuPrincipalVista.conectaControlador(menuPrincipalControlador);
                 menuPrincipalControlador.iniciar();
                 menuPrincipalVista.setVisible(true);    
+                break;
         }
+    }
+    
+    private void calcularVencimiento(){
+        Calendar vigencia = CalcularVigencia.CalcularVigencia(titular.getFechanacimiento(), emitirLicenciaVista.cbListaCategoria.getSelectedItem().toString());
+        int aniosVigencia = CalcularVigencia.getAñosVigencia(vigencia);
+        
+        Calendar calendar = Calendar.getInstance();
+        titular.setFechagestion(emitirLicenciaVista.dccFechaEmision.getDate());
+        calendar.setTime(titular.getFechagestion());
+        calendar.add(Calendar.YEAR, aniosVigencia);
+        
+        fechaVencimiento = calendar.getTime();
     }
     
     public void iniciar(){
@@ -115,7 +134,6 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
             modeloTablaTitulares.addRow(filaNueva);
         }
         
-        
         emitirLicenciaVista.setLocationRelativeTo(null);
     }
     
@@ -123,7 +141,28 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
         if(emitirLicenciaVista.tfObservacion.getText().length()==0){
             return false;
         }
+        
+        validarRestriccionEdadClaseLicencia();
+        
         return true;
+    }
+    
+    private Boolean validarRestriccionEdadClaseLicencia(){
+        //VALIDA QUE PARA LAS LICENCIAS NO PROFESIONALES SE TENGA MAS DE 17 AÑOS
+        Boolean valido = false;
+        String clase = emitirLicenciaVista.cbListaClaseLicencia.getSelectedItem().toString();
+        java.util.Date fechaActual = new java.util.Date();
+        int edad = (int) ((fechaActual.getTime() - titular.getFechanacimiento().getTime()) / 86400000 / 365);
+        if(edad >= 17 && (clase.equals("A") || clase.equals("B") || clase.equals("F") || clase.equals("G"))){
+            valido = true;
+        }
+        else if (edad >= 21 && (clase.equals("C") || clase.equals("D") || clase.equals("E"))){
+            valido = true;
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "La edad mínima para obtener una licencia de clase A, B, F o G es de 17 años y para clases C, D o E es de 21 años.", "Error", JOptionPane.ERROR_MESSAGE, null);
+        }
+        return valido;
     }
     
     private void setearDatosEmpleado(String apellido, String nombre, String email, String tel){
@@ -137,8 +176,6 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
         // Obtenemos el primer dato del renglon seleccionado
         if (emitirLicenciaVista.tablaTitulares.getSelectedRow() != -1) {
             String dni = (String) modeloTablaTitulares.getValueAt(emitirLicenciaVista.tablaTitulares.getSelectedRow(), 0);
-
-            // Lo imprimimos en pantalla
             System.out.println("DNI: " + dni);
             
             //Busca y setea el titular con el dni seleccionado
@@ -147,7 +184,7 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
             //Setea los datos del empleado asociado al titular seleccionado
             Usuario empleado = usuarioDAO.obtenUsuario(titular.getIdempleadogestor());
             setearDatosEmpleado(empleado.getApellido(), empleado.getNombre(), empleado.getEmail(), empleado.getNumerotelefono());            
-        } else {
+        }else{
             System.out.println("Seleccione un renglon primero");
         }
     }
