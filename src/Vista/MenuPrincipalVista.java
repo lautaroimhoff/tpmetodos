@@ -6,6 +6,10 @@
 package Vista;
 
 import ControladoresGestores.MenuPrincipalControlador;
+import java.awt.Color;
+import static javafx.scene.paint.Color.color;
+import javax.swing.BorderFactory;
+import javax.swing.JComponent;
 
 /**
  *
@@ -18,6 +22,7 @@ public class MenuPrincipalVista extends javax.swing.JFrame {
      */
     public MenuPrincipalVista() {
         initComponents();
+        this.getContentPane().setBackground(Color.DARK_GRAY);
     }
 
     /**
@@ -40,11 +45,14 @@ public class MenuPrincipalVista extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(144, 153, 162));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Seleccione la acción que desea realizar");
 
         btnEmitirLicencia.setText("Emitir licencia");
+        btnEmitirLicencia.setFocusPainted(false);
         btnEmitirLicencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEmitirLicenciaActionPerformed(evt);
@@ -52,6 +60,7 @@ public class MenuPrincipalVista extends javax.swing.JFrame {
         });
 
         btnAltaTitular.setText("Ingresar un titular");
+        btnAltaTitular.setFocusPainted(false);
         btnAltaTitular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAltaTitularActionPerformed(evt);
@@ -60,6 +69,7 @@ public class MenuPrincipalVista extends javax.swing.JFrame {
 
         buttonModificarTitular.setText("Modificar datos de un titular");
         buttonModificarTitular.setEnabled(false);
+        buttonModificarTitular.setFocusPainted(false);
         buttonModificarTitular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonModificarTitularActionPerformed(evt);
@@ -68,6 +78,7 @@ public class MenuPrincipalVista extends javax.swing.JFrame {
 
         buttonConsultarLicenciasVigentes.setText("Consultar licencias vigentes");
         buttonConsultarLicenciasVigentes.setEnabled(false);
+        buttonConsultarLicenciasVigentes.setFocusPainted(false);
         buttonConsultarLicenciasVigentes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonConsultarLicenciasVigentesActionPerformed(evt);
@@ -75,6 +86,8 @@ public class MenuPrincipalVista extends javax.swing.JFrame {
         });
 
         buttonConsultarLicenciasExpiradas.setText("Consultar licencias expiradas");
+        buttonConsultarLicenciasExpiradas.setEnabled(false);
+        buttonConsultarLicenciasExpiradas.setFocusPainted(false);
         buttonConsultarLicenciasExpiradas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonConsultarLicenciasExpiradasActionPerformed(evt);
@@ -82,6 +95,7 @@ public class MenuPrincipalVista extends javax.swing.JFrame {
         });
 
         buttonSalir.setText("Salir");
+        buttonSalir.setFocusPainted(false);
         buttonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSalirActionPerformed(evt);
@@ -108,9 +122,9 @@ public class MenuPrincipalVista extends javax.swing.JFrame {
                             .addComponent(buttonConsultarLicenciasExpiradas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(buttonConsultarLicenciasVigentes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(buttonModificarTitular, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAltaTitular, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(buttonSalir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnEmitirLicencia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnEmitirLicencia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                            .addComponent(btnAltaTitular, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -124,10 +138,10 @@ public class MenuPrincipalVista extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnEmitirLicencia)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAltaTitular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAltaTitular)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonModificarTitular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonModificarTitular)
+                .addGap(8, 8, 8)
                 .addComponent(buttonConsultarLicenciasVigentes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonConsultarLicenciasExpiradas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
