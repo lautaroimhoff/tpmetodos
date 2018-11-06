@@ -30,18 +30,16 @@ public class MenuPrincipalControlador implements ActionListener{
         String comando = e.getActionCommand();
         switch(comando){
             case "EMITIR_LICENCIA":
-                Licencia  licenciaModelo = new Licencia();
                 EmitirLicenciaVista emitirLicenciaVista = new EmitirLicenciaVista();
-                EmitirLicenciaControlador emitirLicenciaControlador = new EmitirLicenciaControlador(licenciaModelo, emitirLicenciaVista);
+                EmitirLicenciaControlador emitirLicenciaControlador = new EmitirLicenciaControlador(emitirLicenciaVista);
                 emitirLicenciaVista.concetaControlador(emitirLicenciaControlador);
                 emitirLicenciaControlador.iniciar();
                 emitirLicenciaVista.setVisible(true);                                                                                                               
                 this.menuPrincipalVista.setVisible(false);
                 break;
             case "ALTA_TITULAR":
-                Titular titularModelo = new Titular();
                 AltaTitularVista altaTitularVista = new AltaTitularVista();
-                AltaTitularControlador altaTitularControlador = new AltaTitularControlador(titularModelo, altaTitularVista);
+                AltaTitularControlador altaTitularControlador = new AltaTitularControlador(altaTitularVista);
                 altaTitularVista.concetaControlador(altaTitularControlador);
                 altaTitularControlador.iniciar();
                 altaTitularVista.setVisible(true);                                                                                                     

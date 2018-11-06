@@ -38,6 +38,15 @@ public class AltaTitularControlador implements ActionListener{
     private ClaselicenciaDAO claseLicenciaDAO;
     private TipodocumentoDAO tipoDocumentoDAO;
 
+    public AltaTitularControlador(AltaTitularVista vista){
+        this.titularModelo= new Titular();
+        this.altaTitularVista = vista;
+        this.titularDAO = new TitularDAO();
+        this.nacionalidadDAO = new NacionalidadDAO();
+        this.claseLicenciaDAO = new ClaselicenciaDAO();
+        this.tipoDocumentoDAO = new TipodocumentoDAO();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
@@ -78,9 +87,9 @@ public class AltaTitularControlador implements ActionListener{
                     
                     JOptionPane.showMessageDialog(null, "Titular creado con éxito");
                     
-                    Licencia  licenciaModelo = new Licencia();
                     EmitirLicenciaVista emitirLicenciaVista = new EmitirLicenciaVista();
-                    EmitirLicenciaControlador emitirLicenciaControlador = new EmitirLicenciaControlador(licenciaModelo, emitirLicenciaVista);
+                    EmitirLicenciaControlador emitirLicenciaControlador = new EmitirLicenciaControlador(emitirLicenciaVista);
+                    emitirLicenciaControlador.setTitular(titularDTO);
                     emitirLicenciaVista.concetaControlador(emitirLicenciaControlador);
                     emitirLicenciaControlador.iniciar();
                     emitirLicenciaVista.setVisible(true);                                                                                                               
@@ -95,15 +104,6 @@ public class AltaTitularControlador implements ActionListener{
                 menuPrincipalControlador.iniciar();
                 menuPrincipalVista.setVisible(true);
         }
-    }
-    
-    public AltaTitularControlador(Titular modelo, AltaTitularVista vista){
-        this.titularModelo=modelo;
-        this.altaTitularVista=vista;
-        this.titularDAO = new TitularDAO();
-        this.nacionalidadDAO = new NacionalidadDAO();
-        this.claseLicenciaDAO = new ClaselicenciaDAO();
-        this.tipoDocumentoDAO = new TipodocumentoDAO();
     }
     
     public void iniciar(){

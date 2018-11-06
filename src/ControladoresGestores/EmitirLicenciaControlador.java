@@ -34,8 +34,23 @@ public class EmitirLicenciaControlador implements ActionListener{
     private UsuarioDAO usuarioDAO;
     private TitularDAO titularDAO;
     
+    private Titular titular;
+    
     private DefaultTableModel modeloTablaEmpleados;
     private DefaultTableModel modeloTablaTitulares;
+    
+    public EmitirLicenciaControlador(EmitirLicenciaVista vista){
+        this.licenciaModelo = new Licencia();
+        this.emitirLicenciaVista = vista;
+        this.categoriaLicenciaDAO = new CategorialicenciaDAO();
+        this.claseLicenciaDAO = new ClaselicenciaDAO();
+        this.usuarioDAO = new UsuarioDAO();
+        this.titularDAO = new TitularDAO();
+    }
+    
+    public void setTitular(Titular titular) {
+        this.titular = titular;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -63,15 +78,6 @@ public class EmitirLicenciaControlador implements ActionListener{
         }
     }
     
-    public EmitirLicenciaControlador(Licencia modelo, EmitirLicenciaVista vista){
-        this.licenciaModelo=modelo;
-        this.emitirLicenciaVista=vista;
-        this.categoriaLicenciaDAO = new CategorialicenciaDAO();
-        this.claseLicenciaDAO = new ClaselicenciaDAO();
-        this.usuarioDAO = new UsuarioDAO();
-        this.titularDAO = new TitularDAO();
-    }
-    
     public void iniciar(){
         emitirLicenciaVista.setTitle("EMITIR LICENCIA");
         
@@ -83,17 +89,26 @@ public class EmitirLicenciaControlador implements ActionListener{
             emitirLicenciaVista.cbListaClaseLicencia.addItem(clase.getClaselicencia());
         }
         
+        //Tabla de empleados
         modeloTablaEmpleados = (DefaultTableModel) emitirLicenciaVista.tablaEmpleados.getModel();
         for(Usuario empleado: usuarioDAO.obtenListaUsuarios()){
             Object filaNueva[] = {empleado.getNombreusuario(), empleado.getApellido(), empleado.getNombre(), empleado.getEmail()};
             modeloTablaEmpleados.addRow(filaNueva);
         }
         
+        //Tabla de titulares
         modeloTablaTitulares = (DefaultTableModel) emitirLicenciaVista.tablaTitulares.getModel();
-        for(Titular titular: titularDAO.obtenListaTitulars()){
+        if(titular == null){
+            for(Titular t: titularDAO.obtenListaTitulars()){
+                Object filaNueva[] = {t.getNumerodocumento(), t.getApellido(), t.getNombre()};
+                modeloTablaTitulares.addRow(filaNueva);
+            }
+        }
+        else{
             Object filaNueva[] = {titular.getNumerodocumento(), titular.getApellido(), titular.getNombre()};
             modeloTablaTitulares.addRow(filaNueva);
         }
+        
         
         emitirLicenciaVista.setLocationRelativeTo(null);
     }

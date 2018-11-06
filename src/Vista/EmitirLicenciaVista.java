@@ -58,7 +58,7 @@ public class EmitirLicenciaVista extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Emitir Licencia");
+        jLabel1.setText("Emitir licencia");
 
         jLabel2.setText("Categoría");
 
