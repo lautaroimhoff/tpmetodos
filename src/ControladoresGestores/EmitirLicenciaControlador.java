@@ -19,6 +19,9 @@ import Vista.MenuPrincipalVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -36,7 +39,6 @@ public class EmitirLicenciaControlador implements ActionListener{
     
     private Titular titular;
     
-    private DefaultTableModel modeloTablaEmpleados;
     private DefaultTableModel modeloTablaTitulares;
     
     public EmitirLicenciaControlador(EmitirLicenciaVista vista){
@@ -96,9 +98,7 @@ public class EmitirLicenciaControlador implements ActionListener{
         
         if(!(titular == null)){
             Usuario empleado = usuarioDAO.obtenUsuario(titular.getIdempleadogestor());
-            emitirLicenciaVista.lblNombreApellidoEmpleado.setText(empleado.getApellido() + " " + empleado.getNombre());
-            emitirLicenciaVista.lblEmailEmpleado.setText(empleado.getEmail());
-            emitirLicenciaVista.lblTelefonoEmpleado.setText(empleado.getNumerotelefono());
+            setearDatosEmpleado(empleado.getApellido(), empleado.getNombre(), empleado.getEmail(), empleado.getNumerotelefono());
         }
         
         //Tabla de titulares
@@ -123,7 +123,32 @@ public class EmitirLicenciaControlador implements ActionListener{
             return false;
         }
         
+        emitirLicenciaVista.tablaTitulares.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
+        emitirLicenciaVista.tablaTitulares.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            //Se ejecuta automáticamente cada vez que se hace una nueva selección. 
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                //aca capturo el documento de la celda seleccionada 
+                String numDocumentoTitular = String.valueOf(modeloTablaTitulares.getValueAt(emitirLicenciaVista.tablaTitulares.getSelectedRow(),0));
+                System.out.println("Documento del titular seleccionado: " + numDocumentoTitular);
+                
+                //Setea el titular seleccionado
+                titular = titularDAO.obtenTitular(numDocumentoTitular);
+                
+                //Setea los datos del empleado asociado al titular seleccionado
+                Usuario empleado = usuarioDAO.obtenUsuario(titular.getIdempleadogestor());
+                setearDatosEmpleado(empleado.getApellido(), empleado.getNombre(), empleado.getEmail(), empleado.getNumerotelefono());
+            }
+        });
+    
+        
         return true;
+    }
+    
+    private void setearDatosEmpleado(String apellido, String nombre, String email, String tel){
+        emitirLicenciaVista.lblNombreApellidoEmpleado.setText(apellido + " " + nombre);
+        emitirLicenciaVista.lblEmailEmpleado.setText(email);
+        emitirLicenciaVista.lblTelefonoEmpleado.setText(tel);
     }
 }
 

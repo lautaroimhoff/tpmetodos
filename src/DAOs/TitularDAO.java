@@ -86,21 +86,22 @@ public class TitularDAO
         }  
 
         return titular; 
-    }  
-     public Titular obtenTitular(String nombreTitular) throws HibernateException 
+    }
+     
+      public Titular obtenTitular(String numDocumento) throws HibernateException 
     { 
         Titular titular = null;  
         try 
         { 
             iniciaOperacion(); 
-            titular = (Titular) sesion.createQuery("from Titular where nombre='"+nombreTitular.trim()+"'").uniqueResult();
+            titular = (Titular) sesion.createQuery("from Titular where numerodocumento='"+numDocumento.trim()+"'").uniqueResult();
         } finally 
         { 
             sesion.close(); 
         }  
 
         return titular; 
-    }   
+    }
 
     public List<Titular> obtenListaTitulares() throws HibernateException 
     { 
