@@ -12,7 +12,6 @@ import Vista.EmitirLicenciaVista;
 import Vista.MenuPrincipalVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JFrame;
 
 /**
  *

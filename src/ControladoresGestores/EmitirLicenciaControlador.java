@@ -7,24 +7,19 @@ package ControladoresGestores;
 
 import DAOs.CategorialicenciaDAO;
 import DAOs.ClaselicenciaDAO;
+import DAOs.TitularDAO;
 import DAOs.UsuarioDAO;
 import Entity.Categorialicencia;
 import Entity.Claselicencia;
 import Entity.Licencia;
+import Entity.Titular;
 import Entity.Usuario;
 import Vista.EmitirLicenciaVista;
 import Vista.MenuPrincipalVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 
 
 /**
@@ -37,8 +32,10 @@ public class EmitirLicenciaControlador implements ActionListener{
     private CategorialicenciaDAO categoriaLicenciaDAO;
     private ClaselicenciaDAO claseLicenciaDAO;
     private UsuarioDAO usuarioDAO;
+    private TitularDAO titularDAO;
     
     private DefaultTableModel modeloTablaEmpleados;
+    private DefaultTableModel modeloTablaTitulares;
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -72,6 +69,7 @@ public class EmitirLicenciaControlador implements ActionListener{
         this.categoriaLicenciaDAO = new CategorialicenciaDAO();
         this.claseLicenciaDAO = new ClaselicenciaDAO();
         this.usuarioDAO = new UsuarioDAO();
+        this.titularDAO = new TitularDAO();
     }
     
     public void iniciar(){
@@ -89,6 +87,12 @@ public class EmitirLicenciaControlador implements ActionListener{
         for(Usuario empleado: usuarioDAO.obtenListaUsuarios()){
             Object filaNueva[] = {empleado.getNombreusuario(), empleado.getApellido(), empleado.getNombre(), empleado.getEmail()};
             modeloTablaEmpleados.addRow(filaNueva);
+        }
+        
+        modeloTablaTitulares = (DefaultTableModel) emitirLicenciaVista.tablaTitulares.getModel();
+        for(Titular titular: titularDAO.obtenListaTitulars()){
+            Object filaNueva[] = {titular.getNumerodocumento(), titular.getApellido(), titular.getNombre()};
+            modeloTablaTitulares.addRow(filaNueva);
         }
         
         emitirLicenciaVista.setLocationRelativeTo(null);

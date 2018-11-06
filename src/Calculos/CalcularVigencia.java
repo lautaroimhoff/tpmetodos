@@ -7,15 +7,7 @@ package Calculos;
 
 import java.util.Date;
 //import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import static java.time.Duration.between;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 /**
  *
