@@ -76,11 +76,11 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
                 else{
                     //Crear un objeto Licencia e inicializarlo con los datos ingresados en la pantalla
                     Licencia licencia = new Licencia();
-                    licencia.setCategorialicencia((Categorialicencia)emitirLicenciaVista.cbListaCategoria.getSelectedItem());
+                    licencia.setCategorialicencia(categoriaLicenciaDAO.obtenCategorialicencia(emitirLicenciaVista.cbListaCategoria.getSelectedItem().toString()));
                     licencia.setClaselicencia(claseLicenciaDAO.obtenClaselicencia(emitirLicenciaVista.cbListaClaseLicencia.getSelectedItem().toString()));
                     licencia.setFechaemision(titular.getFechagestion());
                     licencia.setFechavencimiento(fechaVencimiento);
-                    //licencia.setHoraemision(); //TODO:ver
+                    licencia.setHoraemision(new Date()); //TODO:ver
                     licencia.setNumerolicencia(0); //TODO:Ver
                     licencia.setObservacion(emitirLicenciaVista.tfObservacion.getText().toString());
                     licencia.setTitular(titular);
@@ -92,6 +92,13 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
                     
                     calcularVencimiento();
                     JOptionPane.showMessageDialog(null, "Titular creado con éxito\n Fecha de vencieminto: " + fechaVencimiento.toString());
+                    
+                    this.emitirLicenciaVista.setVisible(false);
+                    MenuPrincipalVista menuPrincipalVista = new MenuPrincipalVista();
+                    MenuPrincipalControlador menuPrincipalControlador = new MenuPrincipalControlador(menuPrincipalVista);
+                    menuPrincipalVista.conectaControlador(menuPrincipalControlador);
+                    menuPrincipalControlador.iniciar();
+                    menuPrincipalVista.setVisible(true);
                 }
                 break;
             case "CANCELAR":
