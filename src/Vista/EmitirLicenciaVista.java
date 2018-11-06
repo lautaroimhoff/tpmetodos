@@ -6,12 +6,17 @@
 package Vista;
 
 import ControladoresGestores.EmitirLicenciaControlador;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author jaque
  */
-public class EmitirLicenciaVista extends javax.swing.JFrame {
+public class EmitirLicenciaVista extends javax.swing.JFrame{
 
     /**
      * Creates new form UIEmitirLicencia
@@ -26,6 +31,8 @@ public class EmitirLicenciaVista extends javax.swing.JFrame {
     
         this.btnCancelar.addActionListener(c);
         this.btnCancelar.setActionCommand("CANCELAR");
+         
+        this.tablaTitulares.addMouseListener(c);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -246,6 +253,5 @@ public class EmitirLicenciaVista extends javax.swing.JFrame {
     public javax.swing.JTable tablaTitulares;
     public javax.swing.JTextField tfObservacion;
     // End of variables declaration//GEN-END:variables
-
 
 }

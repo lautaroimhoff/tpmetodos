@@ -18,6 +18,8 @@ import Vista.EmitirLicenciaVista;
 import Vista.MenuPrincipalVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -29,7 +31,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author jaque
  */
-public class EmitirLicenciaControlador implements ActionListener{
+public class EmitirLicenciaControlador implements ActionListener, MouseListener{
     private Licencia licenciaModelo;
     private EmitirLicenciaVista emitirLicenciaVista;
     private CategorialicenciaDAO categoriaLicenciaDAO;
@@ -66,12 +68,11 @@ public class EmitirLicenciaControlador implements ActionListener{
                 }
                 else{
                     //Crear un objeto Licencia e inicializarlo con los datos ingresados en la pantalla
-                    
                     JOptionPane.showMessageDialog(null, "Titular creado con éxito");
                 }
                 break;
             case "CANCELAR":
-                if(!(titular == null)){
+                if(titular.getLicencias().isEmpty()){
                     titularDAO.eliminaTitular(titular);
                     
                     JOptionPane.showMessageDialog(null, "El titular " + titular.getApellido() + " fue eliminado, ya que no posee licencias registradas");
@@ -122,26 +123,6 @@ public class EmitirLicenciaControlador implements ActionListener{
         if(emitirLicenciaVista.tfObservacion.getText().length()==0){
             return false;
         }
-        
-        emitirLicenciaVista.tablaTitulares.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
-        emitirLicenciaVista.tablaTitulares.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-            //Se ejecuta automáticamente cada vez que se hace una nueva selección. 
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                //aca capturo el documento de la celda seleccionada 
-                String numDocumentoTitular = String.valueOf(modeloTablaTitulares.getValueAt(emitirLicenciaVista.tablaTitulares.getSelectedRow(),0));
-                System.out.println("Documento del titular seleccionado: " + numDocumentoTitular);
-                
-                //Setea el titular seleccionado
-                titular = titularDAO.obtenTitular(numDocumentoTitular);
-                
-                //Setea los datos del empleado asociado al titular seleccionado
-                Usuario empleado = usuarioDAO.obtenUsuario(titular.getIdempleadogestor());
-                setearDatosEmpleado(empleado.getApellido(), empleado.getNombre(), empleado.getEmail(), empleado.getNumerotelefono());
-            }
-        });
-    
-        
         return true;
     }
     
@@ -149,6 +130,46 @@ public class EmitirLicenciaControlador implements ActionListener{
         emitirLicenciaVista.lblNombreApellidoEmpleado.setText(apellido + " " + nombre);
         emitirLicenciaVista.lblEmailEmpleado.setText(email);
         emitirLicenciaVista.lblTelefonoEmpleado.setText(tel);
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        // Obtenemos el primer dato del renglon seleccionado
+        if (emitirLicenciaVista.tablaTitulares.getSelectedRow() != -1) {
+            String dni = (String) modeloTablaTitulares.getValueAt(emitirLicenciaVista.tablaTitulares.getSelectedRow(), 0);
+
+            // Lo imprimimos en pantalla
+            System.out.println("DNI: " + dni);
+            
+            //Busca y setea el titular con el dni seleccionado
+            titular = titularDAO.obtenTitular(dni);
+            
+            //Setea los datos del empleado asociado al titular seleccionado
+            Usuario empleado = usuarioDAO.obtenUsuario(titular.getIdempleadogestor());
+            setearDatosEmpleado(empleado.getApellido(), empleado.getNombre(), empleado.getEmail(), empleado.getNumerotelefono());            
+        } else {
+            System.out.println("Seleccione un renglon primero");
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        
     }
 }
 

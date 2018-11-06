@@ -25,7 +25,7 @@ public class Titular  implements java.io.Serializable {
      private short donante;
      private short idempleadogestor;
      private Date fechagestion;
-     private Set licencias = new HashSet(0);
+     private Set licencias = new HashSet();
 
     public Titular() {
     }

@@ -44,7 +44,7 @@
         <property name="fechagestion" type="date">
             <column name="fechagestion" length="13" not-null="true" />
         </property>
-        <set name="licencias" table="licencia" inverse="true" lazy="true" fetch="select">
+        <set name="licencias" table="licencia" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="idtitularreceptor" not-null="true" />
             </key>
