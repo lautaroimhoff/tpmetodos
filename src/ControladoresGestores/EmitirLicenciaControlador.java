@@ -8,6 +8,7 @@ package ControladoresGestores;
 import Calculos.CalcularVigencia;
 import DAOs.CategorialicenciaDAO;
 import DAOs.ClaselicenciaDAO;
+import DAOs.LicenciaDAO;
 import DAOs.TitularDAO;
 import DAOs.UsuarioDAO;
 import Entity.Categorialicencia;
@@ -41,6 +42,7 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
     private ClaselicenciaDAO claseLicenciaDAO;
     private UsuarioDAO usuarioDAO;
     private TitularDAO titularDAO;
+    private LicenciaDAO licenciaDAO;
     
     private Titular titular;
     private Date fechaVencimiento = new Date();
@@ -54,6 +56,7 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
         this.claseLicenciaDAO = new ClaselicenciaDAO();
         this.usuarioDAO = new UsuarioDAO();
         this.titularDAO = new TitularDAO();
+        this.licenciaDAO = new LicenciaDAO();
     }
     
     public void setTitular(Titular titular) {
@@ -72,6 +75,20 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
                 }
                 else{
                     //Crear un objeto Licencia e inicializarlo con los datos ingresados en la pantalla
+                    Licencia licencia = new Licencia();
+                    licencia.setCategorialicencia((Categorialicencia)emitirLicenciaVista.cbListaCategoria.getSelectedItem());
+                    licencia.setClaselicencia(claseLicenciaDAO.obtenClaselicencia(emitirLicenciaVista.cbListaClaseLicencia.getSelectedItem().toString()));
+                    licencia.setFechaemision(titular.getFechagestion());
+                    licencia.setFechavencimiento(fechaVencimiento);
+                    //licencia.setHoraemision(); //TODO:ver
+                    licencia.setNumerolicencia(0); //TODO:Ver
+                    licencia.setObservacion(emitirLicenciaVista.tfObservacion.getText().toString());
+                    licencia.setTitular(titular);
+                    licencia.setUsuario(usuarioDAO.obtenUsuario(titular.getIdempleadogestor()));
+                    licencia.setVigencia((short)calcularVencimiento());
+                    licencia.setVigente(true);
+                    
+                    licenciaDAO.guardaLicencia(licencia);
                     
                     calcularVencimiento();
                     JOptionPane.showMessageDialog(null, "Titular creado con éxito\n Fecha de vencieminto: " + fechaVencimiento.toString());
@@ -93,7 +110,7 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
         }
     }
     
-    private void calcularVencimiento(){
+    private int calcularVencimiento(){
         Calendar vigencia = CalcularVigencia.CalcularVigencia(titular.getFechanacimiento(), emitirLicenciaVista.cbListaCategoria.getSelectedItem().toString());
         int aniosVigencia = CalcularVigencia.getAñosVigencia(vigencia);
         
@@ -103,6 +120,8 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
         calendar.add(Calendar.YEAR, aniosVigencia);
         
         fechaVencimiento = calendar.getTime();
+        
+        return aniosVigencia;
     }
     
     public void iniciar(){
