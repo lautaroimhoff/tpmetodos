@@ -22,7 +22,6 @@ public class MenuPrincipalVista extends javax.swing.JFrame {
      */
     public MenuPrincipalVista() {
         initComponents();
-        this.getContentPane().setBackground(Color.DARK_GRAY);
     }
 
     /**
