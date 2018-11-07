@@ -5,6 +5,7 @@
  */
 package ControladoresGestores;
 
+import Calculos.CalcularCosto;
 import Calculos.CalcularVigencia;
 import DAOs.CategorialicenciaDAO;
 import DAOs.ClaselicenciaDAO;
@@ -13,6 +14,7 @@ import DAOs.TitularDAO;
 import DAOs.UsuarioDAO;
 import Entity.Categorialicencia;
 import Entity.Claselicencia;
+import Entity.Costolicencia;
 import Entity.Licencia;
 import Entity.Titular;
 import Entity.Usuario;
@@ -25,9 +27,6 @@ import java.awt.event.MouseListener;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -46,6 +45,7 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
     
     private Titular titular;
     private Date fechaVencimiento = new Date();
+    private int costo = 0;
     
     private DefaultTableModel modeloTablaTitulares;
     
@@ -62,6 +62,34 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
     public void setTitular(Titular titular) {
         this.titular = titular;
     }
+    
+    private boolean validarClaseLicenciaProfesional(){
+        /*VALIDA LA RESTRICCION QUE PARA PEDIR UNA LICENCIA PROFESIONAL EL TITULAR TENGA UNA LICENCIA B CON UN AÑO DE EMISION NO MENOR A 1 AÑO*/
+        Boolean tieneLicenciaB = false;    
+        
+        //obtener id clase licencia b o ver como manejar eso (idClaseLicenciaB)
+        for(Licencia l: titular.getLicencias()) {
+            
+            if (l.getClaselicencia().getIdclaselicencia() == claseLicenciaDAO.obtenClaselicencia(emitirLicenciaVista.cbListaClaseLicencia.getSelectedItem().toString()).getIdclaselicencia()) {
+                
+                tieneLicenciaB = true;
+                Date fechaActual = new Date();
+                int edad = (int) ((fechaActual.getTime() - titular.getFechanacimiento().getTime()) / 86400000 / 365);
+                Integer anioAntiguedad = (int) ((fechaActual.getTime() - titular.getFechagestion().getTime()) / 86400000 / 365);
+                
+                if (anioAntiguedad < 1 && edad >= 21) {
+                    JOptionPane.showMessageDialog(null, "Para licencias profesionales (C, D o E) debe tener una licencia B con una fecha de emisión de un (1) año como mínimo y el titular debe ser mayor a 21 años");
+                    return false;
+                }
+            }
+        }
+//        if (!tieneLicenciaB) {
+//            JOptionPane.showMessageDialog(null, "Para licencias profesionales (C, D o E) debe tener una licencia B con una fecha de emisión de un (1) año como mínimo");
+//            return false;
+//        }
+        
+        return true;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -69,11 +97,10 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
         switch(comando){
             case "ACEPTAR":
                 if(!validarCamposVista()){
-                    System.out.println("completar los campos"); 
-                    
                     JOptionPane.showMessageDialog(null, "Campos inválidos o incompletos");
                 }
-                else{
+                
+                if(validarClaseLicenciaProfesional()){
                     //Crear un objeto Licencia e inicializarlo con los datos ingresados en la pantalla
                     Licencia licencia = new Licencia();
                     licencia.setCategorialicencia(categoriaLicenciaDAO.obtenCategorialicencia(emitirLicenciaVista.cbListaCategoria.getSelectedItem().toString()));
@@ -91,7 +118,10 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
                     licenciaDAO.guardaLicencia(licencia);
                     
                     calcularVencimiento();
-                    JOptionPane.showMessageDialog(null, "Titular creado con éxito\n Fecha de vencieminto: " + fechaVencimiento.toString());
+                    calcularCosto();
+                    JOptionPane.showMessageDialog(null, "Titular creado con éxito\n "
+                                                    + "Fecha de vencieminto: " + fechaVencimiento.toString() + "\n "
+                                                    + "Costo: $" + costo);
                     
                     this.emitirLicenciaVista.setVisible(false);
                     MenuPrincipalVista menuPrincipalVista = new MenuPrincipalVista();
@@ -232,6 +262,12 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
 
     @Override
     public void mouseExited(MouseEvent e) {
+        
+    }
+
+    private void calcularCosto() {
+        costo = CalcularCosto.CalcularCosto(emitirLicenciaVista.cbListaClaseLicencia.getSelectedItem().toString(), this.calcularVencimiento());
+        
         
     }
 }
