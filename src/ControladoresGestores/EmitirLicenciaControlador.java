@@ -102,7 +102,7 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
                 }
                 break;
             case "CANCELAR":
-                if(titular.getLicencias().isEmpty()){
+                if(!(titular == null) && titular.getLicencias().isEmpty()){
                     titularDAO.eliminaTitular(titular);
                     
                     JOptionPane.showMessageDialog(null, "El titular " + titular.getApellido() + " fue eliminado, ya que no posee licencias registradas");
