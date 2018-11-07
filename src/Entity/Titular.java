@@ -25,7 +25,7 @@ public class Titular  implements java.io.Serializable {
      private short donante;
      private short idempleadogestor;
      private Date fechagestion;
-     private Set licencias = new HashSet();
+     private Set<Licencia> licencias = new HashSet<Licencia>();
 
     public Titular() {
     }
@@ -154,7 +154,7 @@ public class Titular  implements java.io.Serializable {
     public void setFechagestion(Date fechagestion) {
         this.fechagestion = fechagestion;
     }
-    public Set getLicencias() {
+    public Set<Licencia> getLicencias() {
         return this.licencias;
     }
     

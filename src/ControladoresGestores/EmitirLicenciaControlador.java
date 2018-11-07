@@ -67,10 +67,12 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
         /*VALIDA LA RESTRICCION QUE PARA PEDIR UNA LICENCIA PROFESIONAL EL TITULAR TENGA UNA LICENCIA B CON UN AÑO DE EMISION NO MENOR A 1 AÑO*/
         Boolean tieneLicenciaB = false;    
         
+         String claselicenciaseleccionada = emitirLicenciaVista.cbListaClaseLicencia.getSelectedItem().toString();
+        
         //obtener id clase licencia b o ver como manejar eso (idClaseLicenciaB)
         for(Licencia l: titular.getLicencias()) {
-            
-            if (l.getClaselicencia().getIdclaselicencia() == claseLicenciaDAO.obtenClaselicencia(emitirLicenciaVista.cbListaClaseLicencia.getSelectedItem().toString()).getIdclaselicencia()) {
+           
+            if (l.getClaselicencia().getIdclaselicencia() == 2 && (claselicenciaseleccionada.equals("C") || claselicenciaseleccionada.equals("D") || claselicenciaseleccionada.equals("E"))) {
                 
                 tieneLicenciaB = true;
                 Date fechaActual = new Date();
@@ -82,11 +84,12 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
                     return false;
                 }
             }
+            
         }
-//        if (!tieneLicenciaB) {
-//            JOptionPane.showMessageDialog(null, "Para licencias profesionales (C, D o E) debe tener una licencia B con una fecha de emisión de un (1) año como mínimo");
-//            return false;
-//        }
+       if (!(tieneLicenciaB) && (claselicenciaseleccionada.equals("C") || claselicenciaseleccionada.equals("D") || claselicenciaseleccionada.equals("E"))) {
+            JOptionPane.showMessageDialog(null, "Para licencias profesionales (C, D o E) debe tener una licencia B con una fecha de emisión de un (1) año como mínimo");
+            return false;
+        }
         
         return true;
     }
