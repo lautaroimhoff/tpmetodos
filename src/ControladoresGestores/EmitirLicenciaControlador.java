@@ -24,6 +24,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -68,7 +69,9 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
         Boolean tieneLicenciaB = false;    
         
         //obtener id clase licencia b o ver como manejar eso (idClaseLicenciaB)
-        for(Licencia l: titular.getLicencias()) {
+        ArrayList<Licencia> licencias = new ArrayList<>(); 
+        licencias.addAll(titular.getLicencias()); 
+        for(Licencia l : licencias) {
             
             if (l.getClaselicencia().getIdclaselicencia() == claseLicenciaDAO.obtenClaselicencia(emitirLicenciaVista.cbListaClaseLicencia.getSelectedItem().toString()).getIdclaselicencia()) {
                 

@@ -56,5 +56,6 @@ Contributor(s):
     <mapping resource="Entity/Usuario.hbm.xml"/>
     <mapping resource="Entity/Licencia.hbm.xml"/>
     <mapping resource="Entity/Titular.hbm.xml"/>
+    <mapping resource="Entity/Contribuyente.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
