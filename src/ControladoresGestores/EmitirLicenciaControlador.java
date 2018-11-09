@@ -27,7 +27,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 
 /**
@@ -48,6 +50,7 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
     private int costo = 0;
     
     private DefaultTableModel modeloTablaTitulares;
+    private TableRowSorter trs;
     
     public EmitirLicenciaControlador(EmitirLicenciaVista vista){
         this.licenciaModelo = new Licencia();
@@ -212,11 +215,20 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
         menuPrincipalVista.setVisible(true);
     }
     
+    private void filtrar() {
+        trs = new TableRowSorter(modeloTablaTitulares);
+        trs.setRowFilter(RowFilter.regexFilter(emitirLicenciaVista.tfFiltroTitular.getText(), 0));
+        emitirLicenciaVista.tablaTitulares.setRowSorter(trs);
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
         
         switch(comando){
+            case "FILTRO_TITULARES":
+                filtrar();
+                break;
             case "ACEPTAR":
                 if(!validarCamposVista()){
                     JOptionPane.showMessageDialog(null, "Campos inválidos o incompletos");
