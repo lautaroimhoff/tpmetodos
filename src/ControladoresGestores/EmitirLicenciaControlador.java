@@ -24,6 +24,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -64,31 +65,42 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
     }
     
     private boolean validarClaseLicenciaProfesional(){
-        /*VALIDA LA RESTRICCION QUE PARA PEDIR UNA LICENCIA PROFESIONAL EL TITULAR TENGA UNA LICENCIA B CON UN AÑO DE EMISION NO MENOR A 1 AÑO*/
-        Boolean tieneLicenciaB = false;    
+        String claseLicenciaSeleccionada = emitirLicenciaVista.cbListaClaseLicencia.getSelectedItem().toString();
+        Date fechaActual = new Date();
+        int edadTitular = (int) ((fechaActual.getTime() - titular.getFechanacimiento().getTime()) / 86400000 / 365);
+        Integer anioAntiguedad = (int) ((fechaActual.getTime() - titular.getFechagestion().getTime()) / 86400000 / 365);
+        String categoriaSeleccionada = emitirLicenciaVista.cbListaCategoria.getSelectedItem().toString();
         
-         String claselicenciaseleccionada = emitirLicenciaVista.cbListaClaseLicencia.getSelectedItem().toString();
-        
-        //obtener id clase licencia b o ver como manejar eso (idClaseLicenciaB)
-        for(Licencia l: titular.getLicencias()) {
-           
-            if (l.getClaselicencia().getIdclaselicencia() == 2 && (claselicenciaseleccionada.equals("C") || claselicenciaseleccionada.equals("D") || claselicenciaseleccionada.equals("E"))) {
-                
-                tieneLicenciaB = true;
-                Date fechaActual = new Date();
-                int edad = (int) ((fechaActual.getTime() - titular.getFechanacimiento().getTime()) / 86400000 / 365);
-                Integer anioAntiguedad = (int) ((fechaActual.getTime() - titular.getFechagestion().getTime()) / 86400000 / 365);
-                
-                if (anioAntiguedad < 1 && edad >= 21) {
-                    JOptionPane.showMessageDialog(null, "Para licencias profesionales (C, D o E) debe tener una licencia B con una fecha de emisión de un (1) año como mínimo y el titular debe ser mayor a 21 años");
+        if(claseLicenciaSeleccionada.equals("C") || claseLicenciaSeleccionada.equals("D") || claseLicenciaSeleccionada.equals("E")){
+            if(edadTitular < 21){
+                JOptionPane.showMessageDialog(null, "El titular debe ser mayor a 21 años para la licencia seleccionada");
+                return false;
+            }
+            
+            if(anioAntiguedad > 65){
+                if(!categoriaSeleccionada.equals("Renovacion")){
+                    JOptionPane.showMessageDialog(null, "El titular debe ser menor a 65 años para la categoria y licencia seleccionada");
                     return false;
                 }
             }
             
+            boolean tieneB = false;
+            for(Licencia l: titular.getLicencias()){
+                if(l.getClaselicencia().getClaselicencia().equals("B")){
+                    tieneB = true;
+                }
+            }
+            
+            if(!tieneB && (anioAntiguedad < 1)){
+                JOptionPane.showMessageDialog(null, "El titular debe poseer una licencia B con un tiempo no menor a un (1) año para la licencia seleccionada");
+                return false;
+            }
         }
-       if (!(tieneLicenciaB) && (claselicenciaseleccionada.equals("C") || claselicenciaseleccionada.equals("D") || claselicenciaseleccionada.equals("E"))) {
-            JOptionPane.showMessageDialog(null, "Para licencias profesionales (C, D o E) debe tener una licencia B con una fecha de emisión de un (1) año como mínimo");
-            return false;
+        
+        if(claseLicenciaSeleccionada.equals("A") || claseLicenciaSeleccionada.equals("B") || claseLicenciaSeleccionada.equals("F") || claseLicenciaSeleccionada.equals("G")){
+            if(edadTitular < 17){
+                return false;
+            }
         }
         
         return true;

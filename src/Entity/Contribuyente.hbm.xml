@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="Entity.Contribuyente" table="contribuyente" schema="public"  optimistic-lock="version">
+  <id name="id" type="int">
+            <column name="id" />
+            <generator class="identity"></generator>
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="50" />
+        </property>
+           <property name="apellido" type="string">
+            <column name="apellido" length="50" />
+        </property>
+           <property name="tipoDocumento" type="string">
+            <column name="tipo_documento" length="50" />
+        </property>
+           <property name="documento" type="string">
+            <column name="documento" length="50" />
+        </property>
+    </class>
+    
+</hibernate-mapping>
