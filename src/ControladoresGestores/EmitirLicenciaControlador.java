@@ -99,6 +99,7 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
         
         if(claseLicenciaSeleccionada.equals("A") || claseLicenciaSeleccionada.equals("B") || claseLicenciaSeleccionada.equals("F") || claseLicenciaSeleccionada.equals("G")){
             if(edadTitular < 17){
+                JOptionPane.showMessageDialog(null, "El titular debe ser mayor a 17 años para la licencia seleccionada");
                 return false;
             }
         }
@@ -213,27 +214,7 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
             return false;
         }
         
-        validarRestriccionEdadClaseLicencia();
-        
         return true;
-    }
-    
-    private Boolean validarRestriccionEdadClaseLicencia(){
-        //VALIDA QUE PARA LAS LICENCIAS NO PROFESIONALES SE TENGA MAS DE 17 AÑOS
-        Boolean valido = false;
-        String clase = emitirLicenciaVista.cbListaClaseLicencia.getSelectedItem().toString();
-        java.util.Date fechaActual = new java.util.Date();
-        int edad = (int) ((fechaActual.getTime() - titular.getFechanacimiento().getTime()) / 86400000 / 365);
-        if(edad >= 17 && (clase.equals("A") || clase.equals("B") || clase.equals("F") || clase.equals("G"))){
-            valido = true;
-        }
-        else if (edad >= 21 && (clase.equals("C") || clase.equals("D") || clase.equals("E"))){
-            valido = true;
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "La edad mínima para obtener una licencia de clase A, B, F o G es de 17 años y para clases C, D o E es de 21 años.", "Error", JOptionPane.ERROR_MESSAGE, null);
-        }
-        return valido;
     }
     
     private void setearDatosEmpleado(String apellido, String nombre, String email, String tel){
