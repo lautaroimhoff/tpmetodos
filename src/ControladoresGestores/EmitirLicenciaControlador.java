@@ -192,7 +192,7 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
         licencia.setFechaemision(titular.getFechagestion());
         licencia.setFechavencimiento(fechaVencimiento);
         licencia.setHoraemision(titular.getFechagestion()); //TODO:ver
-        licencia.setNumerolicencia(licenciaDAO.obtenListaLicencias().size()); //TODO:Ver
+        licencia.setNumerolicencia(0); //TODO:Ver
         licencia.setObservacion(emitirLicenciaVista.tfObservacion.getText().toString());
         licencia.setTitular(titular);
         licencia.setUsuario(usuarioDAO.obtenUsuario(titular.getIdempleadogestor()));
