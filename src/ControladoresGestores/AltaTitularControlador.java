@@ -6,30 +6,35 @@
 package ControladoresGestores;
 
 import DAOs.ClaselicenciaDAO;
+import DAOs.ContribuyenteDAO;
 import DAOs.GruposanguineoDAO;
 import DAOs.NacionalidadDAO;
 import DAOs.SexoDAO;
 import DAOs.TipodocumentoDAO;
 import DAOs.TitularDAO;
 import Entity.Claselicencia;
+import Entity.Contribuyente;
 import Entity.Gruposanguineo;
-import Entity.Licencia;
 import Entity.Nacionalidad;
-import Entity.Tipodocumento;
 import Entity.Titular;
 import Vista.AltaTitularVista;
 import Vista.EmitirLicenciaVista;
 import Vista.MenuPrincipalVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
  * @author jaque
  */
-public class AltaTitularControlador implements ActionListener{
+public class AltaTitularControlador implements ActionListener, MouseListener{
     
     private Titular titularModelo;
     private AltaTitularVista altaTitularVista;
@@ -37,6 +42,11 @@ public class AltaTitularControlador implements ActionListener{
     private NacionalidadDAO nacionalidadDAO;   
     private ClaselicenciaDAO claseLicenciaDAO;
     private TipodocumentoDAO tipoDocumentoDAO;
+    private ContribuyenteDAO contribuyenteDAO;
+    private Contribuyente contribuyente;
+        
+    private DefaultTableModel modeloTablaContribuyentes;
+    private TableRowSorter trs;
 
     public AltaTitularControlador(AltaTitularVista vista){
         this.titularModelo= new Titular();
@@ -45,12 +55,16 @@ public class AltaTitularControlador implements ActionListener{
         this.nacionalidadDAO = new NacionalidadDAO();
         this.claseLicenciaDAO = new ClaselicenciaDAO();
         this.tipoDocumentoDAO = new TipodocumentoDAO();
+        this.contribuyenteDAO = new ContribuyenteDAO();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
         switch(comando){
+            case "FILTRO_TITULARES":
+                filtrar();
+                break;
             case "FINALIZAR CARGA":
                 if(validarRestriccionEdadClaseLicencia() && validarCamposVista()){
                     //Crear un objeto titular e inicializarlo con los datos ingresados en la pantalla
@@ -58,10 +72,10 @@ public class AltaTitularControlador implements ActionListener{
                     Calendar fechaActual = Calendar.getInstance();
                     TipodocumentoDAO tipoDocumentoDAO = new TipodocumentoDAO();
                     SexoDAO sexoDAO = new SexoDAO();
-                    titularDTO.setNombre(altaTitularVista.tfNombreTitular.getText());
-                    titularDTO.setApellido(altaTitularVista.tfApellidoTitular.getText());
-                    titularDTO.setTipodocumento(tipoDocumentoDAO.obtenTipodocumento(altaTitularVista.cbTipoDocumentoTitular.getSelectedItem().toString()));
-                    titularDTO.setNumerodocumento(altaTitularVista.tfNumDocumentoTitular.getText());
+                    titularDTO.setNombre(contribuyente.getNombre().trim());
+                    titularDTO.setApellido(contribuyente.getApellido().trim());
+                    titularDTO.setTipodocumento(tipoDocumentoDAO.obtenTipodocumento(contribuyente.getTipoDocumento().trim()));
+                    titularDTO.setNumerodocumento(contribuyente.getDocumento().trim());
                     if (altaTitularVista.optMasculinoTitular.isSelected()){
                         titularDTO.setSexo(sexoDAO.obtenSexo("Masculino"));
                     }
@@ -106,6 +120,12 @@ public class AltaTitularControlador implements ActionListener{
         }
     }
     
+    private void filtrar() {
+        trs = new TableRowSorter(modeloTablaContribuyentes);
+        trs.setRowFilter(RowFilter.regexFilter(altaTitularVista.tfFiltroContribuyente.getText(), 0));
+        altaTitularVista.tablaContribuyentes.setRowSorter(trs);
+    }
+    
     public void iniciar(){
         altaTitularVista.setTitle("ALTA DEL TITULAR");
         
@@ -117,28 +137,19 @@ public class AltaTitularControlador implements ActionListener{
             altaTitularVista.cbClaseLicenciaTitular.addItem(claseLicencia.getClaselicencia());
         }
         
-        for(Tipodocumento tipoDocumento: tipoDocumentoDAO.obtenListaTipodocumentos()){
-            altaTitularVista.cbTipoDocumentoTitular.addItem(tipoDocumento.getTipodocumento());
+        modeloTablaContribuyentes = (DefaultTableModel) altaTitularVista.tablaContribuyentes.getModel();
+        for(Contribuyente c: contribuyenteDAO.obtenListaContribuyentes()){
+            Object filaNueva[] = {c.getDocumento().trim(), c.getApellido().trim(), c.getNombre().trim()};
+                modeloTablaContribuyentes.addRow(filaNueva);
         }
-        
+                
         altaTitularVista.setLocationRelativeTo(null);
     }
     
     public boolean validarCamposVista(){
-        if(altaTitularVista.tfNombreTitular.getText().length()==0){
-            JOptionPane.showMessageDialog(null, "Debe ingresar un nombre");
-            return false;
-        }
-        if(altaTitularVista.tfApellidoTitular.getText().length()==0){
-            JOptionPane.showMessageDialog(null, "Debe ingresar un apellido");
-            return false;
-        }
+        
         if(altaTitularVista.tfDireccionTitular.getText().length()==0){
             JOptionPane.showMessageDialog(null, "Debe ingresar una dirección");
-            return false;
-        }
-        if(altaTitularVista.tfNumDocumentoTitular.getText().length()==0){
-            JOptionPane.showMessageDialog(null, "Debe ingresar un numero de documento");
             return false;
         }
         if(!altaTitularVista.optFemeninoTitular.isSelected() && !altaTitularVista.optMasculinoTitular.isSelected()){
@@ -149,13 +160,13 @@ public class AltaTitularControlador implements ActionListener{
             JOptionPane.showMessageDialog(null, "Debe seleccionar si el titular es donante o no");
             return false;
         }
+        String dni = (String) modeloTablaContribuyentes.getValueAt(altaTitularVista.tablaContribuyentes.getSelectedRow(), 0);
         for(Titular titular: titularDAO.obtenListaTitulares()){
-            if(titular.getNumerodocumento().equals(altaTitularVista.tfNumDocumentoTitular.getText())){
-                JOptionPane.showMessageDialog(null, "Documento ya existente");
+            if(titular.getNumerodocumento().equals(dni)){
+                JOptionPane.showMessageDialog(null, "El contribuyente ya se encuentra registrado como titular");
                 return false;
             }
         }
-        
         return true;
     }
     
@@ -199,5 +210,34 @@ public class AltaTitularControlador implements ActionListener{
         }        
         
         return nacionalidadAux;
+    }
+    
+    public void mouseClicked(MouseEvent e) {
+        // Obtenemos el primer dato del renglon seleccionado
+        if (altaTitularVista.tablaContribuyentes.getSelectedRow() != -1) {
+            String dni = (String) modeloTablaContribuyentes.getValueAt(altaTitularVista.tablaContribuyentes.getSelectedRow(), 0);
+            System.out.println("DNI: " + dni);
+            
+            //Busca y setea el contribuyente con el dni seleccionado
+            contribuyente = contribuyenteDAO.obtenContribuyente(dni);            
+        }else{
+            System.out.println("Seleccione un renglon primero");
+        }
+    }
+
+    public void mousePressed(MouseEvent e) {
+        
+    }
+
+    public void mouseReleased(MouseEvent e) {
+        
+    }
+
+    public void mouseEntered(MouseEvent e) {
+        
+    }
+
+    public void mouseExited(MouseEvent e) {
+        
     }
 }

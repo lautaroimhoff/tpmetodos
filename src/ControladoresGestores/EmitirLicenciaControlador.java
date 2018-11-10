@@ -112,7 +112,7 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
         String claseLicenciaSeleccionada = emitirLicenciaVista.cbListaClaseLicencia.getSelectedItem().toString();
         Date fechaActual = new Date();
         int edadTitular = (int) ((fechaActual.getTime() - titular.getFechanacimiento().getTime()) / 86400000 / 365);
-        Integer anioAntiguedad = (int) ((fechaActual.getTime() - titular.getFechagestion().getTime()) / 86400000 / 365);
+        int anioAntiguedad = 0;
         String categoriaSeleccionada = emitirLicenciaVista.cbListaCategoria.getSelectedItem().toString();
         
         //Para licencias C, D y E
@@ -124,22 +124,23 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
             }
             
             //Si es mayor a 65 años y no renueva
-            if(anioAntiguedad > 65){
-                if(!categoriaSeleccionada.equals("Renovacion")){
-                    JOptionPane.showMessageDialog(null, "El titular debe ser menor a 65 años para la categoria y licencia seleccionada");
-                    return false;
-                }
+            if(edadTitular > 65 && !categoriaSeleccionada.equals("Renovacion")){
+                JOptionPane.showMessageDialog(null, "El titular debe ser menor a 65 años para la categoria y licencia seleccionada");
+                return false;
             }
             
             boolean tieneB = false;
             for(Licencia l: titular.getLicencias()){
                 if(l.getClaselicencia().getClaselicencia().equals("B")){
                     tieneB = true;
+                    
+                    //Si tiene licencia B calculo la antigüedad de esa licencia. Si no tiene no importa la antigüedad
+                    anioAntiguedad = (int) ((fechaActual.getTime() - l.getFechaemision().getTime()) / 86400000 / 365);
                 }
             }
             
-            //Si no tiene licencia B y no alcanza la antiguedad
-            if(!tieneB && (anioAntiguedad < 1)){
+            //Si no tiene licencia B o no alcanza la antiguedad
+            if(!tieneB || (anioAntiguedad < 1)){
                 JOptionPane.showMessageDialog(null, "El titular debe poseer una licencia B con un tiempo no menor a un (1) año para la licencia seleccionada");
                 return false;
             }
@@ -192,17 +193,24 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
         Licencia licencia = new Licencia();
         licencia.setCategorialicencia(categoriaLicenciaDAO.obtenCategorialicencia(emitirLicenciaVista.cbListaCategoria.getSelectedItem().toString()));
         licencia.setClaselicencia(claseLicenciaDAO.obtenClaselicencia(emitirLicenciaVista.cbListaClaseLicencia.getSelectedItem().toString()));
-        licencia.setFechaemision(titular.getFechagestion());
+        licencia.setFechaemision(emitirLicenciaVista.dccFechaEmision.getDate());
         licencia.setFechavencimiento(fechaVencimiento);
-        licencia.setHoraemision(titular.getFechagestion()); //TODO:ver
+        licencia.setHoraemision(emitirLicenciaVista.dccFechaEmision.getDate()); //TODO:ver
         licencia.setNumerolicencia(0); //TODO:Ver
-        licencia.setObservacion(emitirLicenciaVista.tfObservacion.getText().toString());
+        licencia.setObservacion(emitirLicenciaVista.tfObservacion.getText());
         licencia.setTitular(titular);
         licencia.setUsuario(usuarioDAO.obtenUsuario(titular.getIdempleadogestor()));
         licencia.setVigencia((short)calcularVencimiento());
         licencia.setVigente(true);
         
         return licencia;
+    }
+    
+    private Licencia actualizarLicencia(Licencia l){
+        l.setFechaemision(emitirLicenciaVista.dccFechaEmision.getDate());
+        l.setFechavencimiento(fechaVencimiento);
+        l.setObservacion(emitirLicenciaVista.tfObservacion.getText());
+        return l;
     }
     
     private void volverMenuPrincipal(){
@@ -234,21 +242,39 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
                     JOptionPane.showMessageDialog(null, "Campos inválidos o incompletos");
                 }
                 else if(validarClaseLicenciaProfesional()){
-                    //Crear un objeto Licencia e inicializarlo con los datos ingresados en la pantalla
-                    Licencia licencia = crearLicencia();
-                    
-                    //Guarda la licencia en la bd
-                    licenciaDAO.guardaLicencia(licencia);
-                    
                     calcularVencimiento();
                     calcularCosto();
+                    if(emitirLicenciaVista.cbListaCategoria.getSelectedItem().toString().equals("Primera vez")){
+                       //Crear un objeto Licencia e inicializarlo con los datos ingresados en la pantalla
+                       Licencia licencia = crearLicencia();
+
+                       //Guarda la licencia en la bd
+                       licenciaDAO.guardaLicencia(licencia);
+
+                       JOptionPane.showMessageDialog(null, "Licencia creada con éxito\n "
+                                                       + "Fecha de vencieminto: " + new SimpleDateFormat("dd-MM-yyyy").format(fechaVencimiento) + "\n "
+                                                       + "Costo: $" + costo);
+                    }
+                    /*if(emitirLicenciaVista.cbListaCategoria.getSelectedItem().toString().equals("Renovacion")){
+                        Claselicencia claseLicenciaSeleccionada = new Claselicencia();
+                        claseLicenciaSeleccionada = claseLicenciaDAO.obtenClaselicencia(emitirLicenciaVista.cbListaClaseLicencia.getSelectedItem().toString());
+                        for(Licencia l : licenciaDAO.obtenListaLicencias()){
+                            if(l.getClaselicencia().getIdclaselicencia() == claseLicenciaSeleccionada.getIdclaselicencia() && l.getTitular().getNumerodocumento().equals(titular.getNumerodocumento())){
+                               //Actualizar la vigencia de la licencia
+                               actualizarLicencia(l);
+
+                               //Actualizar la licencia en la bd
+                               licenciaDAO.actualizaLicencia(l);
+                               JOptionPane.showMessageDialog(null, "Licencia actualizada con éxito");
+                            }
+                        }
+                    }*/
+                    if(emitirLicenciaVista.cbListaCategoria.getSelectedItem().toString().equals("Copia")){
+                        // que hace copiar???
+                    }
                     
-                    JOptionPane.showMessageDialog(null, "Titular creado con éxito\n "
-                                                    + "Fecha de vencieminto: " + new SimpleDateFormat("dd-MM-yyyy").format(fechaVencimiento) + "\n "
-                                                    + "Costo: $" + costo);
+                    volverMenuPrincipal();
                 }
-                
-                volverMenuPrincipal();
                 break;
             case "CANCELAR":
                 if(!(titular == null) && titular.getLicencias().isEmpty()){

@@ -87,13 +87,13 @@ public class ContribuyenteDAO {
 
         return contribuyente; 
     }  
-     public Contribuyente obtenContribuyente(String nombreContribuyente) throws HibernateException 
+     public Contribuyente obtenContribuyente(String documento) throws HibernateException 
     { 
         Contribuyente contribuyente = null;  
         try 
         { 
             iniciaOperacion(); 
-            contribuyente = (Contribuyente) sesion.createQuery("from Contribuyente where contribuyente='"+nombreContribuyente.trim()+"'").uniqueResult();
+            contribuyente = (Contribuyente) sesion.createQuery("from Contribuyente where documento='"+documento.trim()+"'").uniqueResult();
         } finally 
         { 
             sesion.close(); 
