@@ -46,6 +46,8 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:postgresql://tpmetodos.postgres.database.azure.com:5432/postgres?user=martindestefanis@tpmetodos&amp;password=TpMetodos1&amp;ssl=true</property>
     <property name="hibernate.connection.username">martindestefanis@tpmetodos</property>
     <property name="hibernate.connection.password">TpMetodos1</property>
+    <property name="hibernate.enable_lazy_load_no_trans">true</property>
+
     <mapping resource="Entity/Tipodocumento.hbm.xml"/>
     <mapping resource="Entity/Claselicencia.hbm.xml"/>
     <mapping resource="Entity/Categorialicencia.hbm.xml"/>
