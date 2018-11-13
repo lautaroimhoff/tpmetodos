@@ -168,7 +168,22 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
         if(emitirLicenciaVista.dccFechaEmision == null){
             return false;
         }
+        
+        if(titular == null){
+            return false;
+        }
         return true;
+    }
+    
+    public boolean tieneLicenciaExistente(){
+        Claselicencia claseLicenciaSeleccionada;
+        claseLicenciaSeleccionada = claseLicenciaDAO.obtenClaselicencia(emitirLicenciaVista.cbListaClaseLicencia.getSelectedItem().toString());
+        for(Licencia l : licenciaDAO.obtenListaLicencias()){
+            if(l.getClaselicencia().getIdclaselicencia() == claseLicenciaSeleccionada.getIdclaselicencia() && l.getTitular().getNumerodocumento().equals(titular.getNumerodocumento())){
+                return true;
+            }
+        }
+        return false;
     }
     
     private int calcularVencimiento(){
@@ -207,9 +222,21 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
     }
     
     private Licencia actualizarLicencia(Licencia l){
+        l.setCategorialicencia(categoriaLicenciaDAO.obtenCategorialicencia(emitirLicenciaVista.cbListaCategoria.getSelectedItem().toString()));
         l.setFechaemision(emitirLicenciaVista.dccFechaEmision.getDate());
         l.setFechavencimiento(fechaVencimiento);
+        l.setHoraemision(emitirLicenciaVista.dccFechaEmision.getDate());
         l.setObservacion(emitirLicenciaVista.tfObservacion.getText());
+        
+        return l;
+    }
+    
+    private Licencia licenciaCopia(Licencia l){
+        l.setCategorialicencia(categoriaLicenciaDAO.obtenCategorialicencia(emitirLicenciaVista.cbListaCategoria.getSelectedItem().toString()));
+        l.setFechaemision(emitirLicenciaVista.dccFechaEmision.getDate());
+        l.setHoraemision(emitirLicenciaVista.dccFechaEmision.getDate());
+        l.setObservacion(emitirLicenciaVista.tfObservacion.getText());
+        
         return l;
     }
     
@@ -242,38 +269,74 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
                     JOptionPane.showMessageDialog(null, "Campos inválidos o incompletos");
                 }
                 else if(validarClaseLicenciaProfesional()){
+                    boolean volver = false;
                     calcularVencimiento();
                     calcularCosto();
                     if(emitirLicenciaVista.cbListaCategoria.getSelectedItem().toString().equals("Primera vez")){
-                       //Crear un objeto Licencia e inicializarlo con los datos ingresados en la pantalla
-                       Licencia licencia = crearLicencia();
+                        if(!tieneLicenciaExistente()){
+                            //Crear un objeto Licencia e inicializarlo con los datos ingresados en la pantalla
+                            Licencia licencia = crearLicencia();
 
-                       //Guarda la licencia en la bd
-                       licenciaDAO.guardaLicencia(licencia);
+                            //Guarda la licencia en la bd
+                            licenciaDAO.guardaLicencia(licencia);
 
-                       JOptionPane.showMessageDialog(null, "Licencia creada con éxito\n "
-                                                       + "Fecha de vencieminto: " + new SimpleDateFormat("dd-MM-yyyy").format(fechaVencimiento) + "\n "
-                                                       + "Costo: $" + costo);
+                            JOptionPane.showMessageDialog(null, "Licencia creada con éxito\n "
+                                                            + "Fecha de vencieminto: " + new SimpleDateFormat("dd-MM-yyyy").format(fechaVencimiento) + "\n "
+                                                            + "Costo: $" + costo);
+
+                            volver = true;
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(null, "El titular ya posee esta licencia");
+                            volver = false;
+                        }                        
                     }
                     /*if(emitirLicenciaVista.cbListaCategoria.getSelectedItem().toString().equals("Renovacion")){
-                        Claselicencia claseLicenciaSeleccionada = new Claselicencia();
+                        Claselicencia claseLicenciaSeleccionada;
                         claseLicenciaSeleccionada = claseLicenciaDAO.obtenClaselicencia(emitirLicenciaVista.cbListaClaseLicencia.getSelectedItem().toString());
                         for(Licencia l : licenciaDAO.obtenListaLicencias()){
                             if(l.getClaselicencia().getIdclaselicencia() == claseLicenciaSeleccionada.getIdclaselicencia() && l.getTitular().getNumerodocumento().equals(titular.getNumerodocumento())){
-                               //Actualizar la vigencia de la licencia
-                               actualizarLicencia(l);
+                                //Actualizar la vigencia de la licencia
+                                actualizarLicencia(l);
 
-                               //Actualizar la licencia en la bd
-                               licenciaDAO.actualizaLicencia(l);
-                               JOptionPane.showMessageDialog(null, "Licencia actualizada con éxito");
+                                //Actualizar la licencia en la bd
+                                licenciaDAO.actualizaLicencia(l);
+                                JOptionPane.showMessageDialog(null, "Licencia actualizada con éxito");
+
+                                volver = true;
+                            }
+                            else{
+                                JOptionPane.showMessageDialog(null, "El titular no posee esta licencia");
+                                volver = false;
+                                break;
+                            }
+                        }
+                    }
+                    if(emitirLicenciaVista.cbListaCategoria.getSelectedItem().toString().equals("Copia")){
+                        Claselicencia claseLicenciaSeleccionada;
+                        claseLicenciaSeleccionada = claseLicenciaDAO.obtenClaselicencia(emitirLicenciaVista.cbListaClaseLicencia.getSelectedItem().toString());
+                        for(Licencia l : licenciaDAO.obtenListaLicencias()){
+                            if(l.getClaselicencia().getIdclaselicencia() == claseLicenciaSeleccionada.getIdclaselicencia() && l.getTitular().getNumerodocumento().equals(titular.getNumerodocumento())){
+                                //Actualizar la vigencia de la licencia
+                                licenciaCopia(l);
+
+                                //Actualizar la licencia en la bd
+                                licenciaDAO.actualizaLicencia(l);
+                                JOptionPane.showMessageDialog(null, "Copia creada con éxito");
+                               
+                                volver = true;
+                            }
+                            else{
+                                JOptionPane.showMessageDialog(null, "El titular no posee esta licencia");
+                                volver = false;
+                                break;
                             }
                         }
                     }*/
-                    if(emitirLicenciaVista.cbListaCategoria.getSelectedItem().toString().equals("Copia")){
-                        // que hace copiar???
-                    }
                     
-                    volverMenuPrincipal();
+                    if(volver){
+                        volverMenuPrincipal();
+                    }
                 }
                 break;
             case "CANCELAR":
@@ -326,5 +389,3 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
         
     }
 }
-
-
