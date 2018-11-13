@@ -87,7 +87,7 @@ public class LicenciaDAO
 
         return licencia; 
     }  
-     public Licencia obtenLicencia(String nombreLicencia) throws HibernateException 
+    public Licencia obtenLicencia(String nombreLicencia) throws HibernateException 
     { 
         Licencia licencia = null;  
         try 
@@ -101,6 +101,20 @@ public class LicenciaDAO
 
         return licencia; 
     }  
+    public Licencia obtenLicencia(int idTitular, int idClaseLicencia) throws HibernateException 
+    { 
+        Licencia licencia = null;  
+        try 
+        { 
+            iniciaOperacion(); 
+            licencia = (Licencia) sesion.createQuery("from Licencia where idtitularreceptor='"+idTitular+"' and idclaselicencia='"+idClaseLicencia+"'").uniqueResult();
+        } finally 
+        { 
+            sesion.close(); 
+        }  
+
+        return licencia; 
+    }
 
     public List<Licencia> obtenListaLicencias() throws HibernateException 
     { 

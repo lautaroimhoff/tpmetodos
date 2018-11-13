@@ -233,8 +233,6 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
     
     private Licencia licenciaCopia(Licencia l){
         l.setCategorialicencia(categoriaLicenciaDAO.obtenCategorialicencia(emitirLicenciaVista.cbListaCategoria.getSelectedItem().toString()));
-        l.setFechaemision(emitirLicenciaVista.dccFechaEmision.getDate());
-        l.setHoraemision(emitirLicenciaVista.dccFechaEmision.getDate());
         l.setObservacion(emitirLicenciaVista.tfObservacion.getText());
         
         return l;
@@ -311,9 +309,9 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
                                 break;
                             }
                         }
-                    }
+                    }*/
                     if(emitirLicenciaVista.cbListaCategoria.getSelectedItem().toString().equals("Copia")){
-                        Claselicencia claseLicenciaSeleccionada;
+                        /*Claselicencia claseLicenciaSeleccionada;
                         claseLicenciaSeleccionada = claseLicenciaDAO.obtenClaselicencia(emitirLicenciaVista.cbListaClaseLicencia.getSelectedItem().toString());
                         for(Licencia l : licenciaDAO.obtenListaLicencias()){
                             if(l.getClaselicencia().getIdclaselicencia() == claseLicenciaSeleccionada.getIdclaselicencia() && l.getTitular().getNumerodocumento().equals(titular.getNumerodocumento())){
@@ -331,8 +329,26 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
                                 volver = false;
                                 break;
                             }
+                        }*/
+                        if(tieneLicenciaExistente()){
+                            Claselicencia claseLicenciaSeleccionada;
+                            claseLicenciaSeleccionada = claseLicenciaDAO.obtenClaselicencia(emitirLicenciaVista.cbListaClaseLicencia.getSelectedItem().toString());
+                            Licencia l = licenciaDAO.obtenLicencia(titular.getIdtitular(), claseLicenciaSeleccionada.getIdclaselicencia());
+                            //Actualizar la vigencia de la licencia
+                            licenciaCopia(l);
+
+                            //Actualizar la licencia en la bd
+                            licenciaDAO.actualizaLicencia(l);
+                            JOptionPane.showMessageDialog(null, "Copia creada con éxito\n "
+                                                            + "Costo: $50");
+
+                            volver = true;
                         }
-                    }*/
+                        else{
+                            JOptionPane.showMessageDialog(null, "El titular no posee esta licencia");
+                            volver = false;
+                        }
+                    }
                     
                     if(volver){
                         volverMenuPrincipal();
