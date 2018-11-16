@@ -5,8 +5,6 @@
  */
 package ControladoresGestores;
 
-import Entity.Licencia;
-import Entity.Titular;
 import Vista.AltaTitularVista;
 import Vista.EmitirLicenciaVista;
 import Vista.MenuPrincipalVista;

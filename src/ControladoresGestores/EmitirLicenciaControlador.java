@@ -18,6 +18,7 @@ import Entity.Licencia;
 import Entity.Titular;
 import Entity.Usuario;
 import Vista.EmitirLicenciaVista;
+import Vista.ImprimirLicenciaVista;
 import Vista.MenuPrincipalVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -262,7 +263,7 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
             case "FILTRO_TITULARES":
                 filtrar();
                 break;
-            case "ACEPTAR":
+            case "EMITIR":
                 if(!validarCamposVista()){
                     JOptionPane.showMessageDialog(null, "Campos inválidos o incompletos");
                 }
@@ -278,58 +279,36 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
                             //Guarda la licencia en la bd
                             licenciaDAO.guardaLicencia(licencia);
 
-                            JOptionPane.showMessageDialog(null, "Licencia creada con éxito\n "
-                                                            + "Fecha de vencieminto: " + new SimpleDateFormat("dd-MM-yyyy").format(fechaVencimiento) + "\n "
-                                                            + "Costo: $" + costo);
+                            int seleccion = JOptionPane.showOptionDialog(
+                                null,
+                                "Licencia creada con éxito\n "
+                                + "Fecha de vencieminto: " + new SimpleDateFormat("dd-MM-yyyy").format(fechaVencimiento) + "\n "
+                                + "Costo: $" + costo, 
+                                "Emisión",
+                                JOptionPane.OK_CANCEL_OPTION,
+                                JOptionPane.INFORMATION_MESSAGE,
+                                null,      // null para icono por defecto.
+                                new Object[] { "Imprimir", "Aceptar" },
+                                "Imprimir");
+                            
+                            if(seleccion == JOptionPane.OK_OPTION){
+                                imprimirLicencia();
+                                volver = false;
+                            }
+                            else{
+                                volver = true;
+                            }
 
-                            volver = true;
+                            
                         }
                         else{
                             JOptionPane.showMessageDialog(null, "El titular ya posee esta licencia");
                             volver = false;
                         }                        
                     }
-                    /*if(emitirLicenciaVista.cbListaCategoria.getSelectedItem().toString().equals("Renovacion")){
-                        Claselicencia claseLicenciaSeleccionada;
-                        claseLicenciaSeleccionada = claseLicenciaDAO.obtenClaselicencia(emitirLicenciaVista.cbListaClaseLicencia.getSelectedItem().toString());
-                        for(Licencia l : licenciaDAO.obtenListaLicencias()){
-                            if(l.getClaselicencia().getIdclaselicencia() == claseLicenciaSeleccionada.getIdclaselicencia() && l.getTitular().getNumerodocumento().equals(titular.getNumerodocumento())){
-                                //Actualizar la vigencia de la licencia
-                                actualizarLicencia(l);
-
-                                //Actualizar la licencia en la bd
-                                licenciaDAO.actualizaLicencia(l);
-                                JOptionPane.showMessageDialog(null, "Licencia actualizada con éxito");
-
-                                volver = true;
-                            }
-                            else{
-                                JOptionPane.showMessageDialog(null, "El titular no posee esta licencia");
-                                volver = false;
-                                break;
-                            }
-                        }
-                    }*/
+                    
+                    //En caso de que la categoria sea "COPIA"
                     if(emitirLicenciaVista.cbListaCategoria.getSelectedItem().toString().equals("Copia")){
-                        /*Claselicencia claseLicenciaSeleccionada;
-                        claseLicenciaSeleccionada = claseLicenciaDAO.obtenClaselicencia(emitirLicenciaVista.cbListaClaseLicencia.getSelectedItem().toString());
-                        for(Licencia l : licenciaDAO.obtenListaLicencias()){
-                            if(l.getClaselicencia().getIdclaselicencia() == claseLicenciaSeleccionada.getIdclaselicencia() && l.getTitular().getNumerodocumento().equals(titular.getNumerodocumento())){
-                                //Actualizar la vigencia de la licencia
-                                licenciaCopia(l);
-
-                                //Actualizar la licencia en la bd
-                                licenciaDAO.actualizaLicencia(l);
-                                JOptionPane.showMessageDialog(null, "Copia creada con éxito");
-                               
-                                volver = true;
-                            }
-                            else{
-                                JOptionPane.showMessageDialog(null, "El titular no posee esta licencia");
-                                volver = false;
-                                break;
-                            }
-                        }*/
                         if(tieneLicenciaExistente()){
                             Claselicencia claseLicenciaSeleccionada;
                             claseLicenciaSeleccionada = claseLicenciaDAO.obtenClaselicencia(emitirLicenciaVista.cbListaClaseLicencia.getSelectedItem().toString());
@@ -365,6 +344,14 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
                 volverMenuPrincipal();
                 break;
         }
+    }
+    
+    private void imprimirLicencia(){
+        ImprimirLicenciaVista imprimirLicenciaVista = new ImprimirLicenciaVista();
+        ImprimirLicenciaControlador imprimirLicenciaControlador = new ImprimirLicenciaControlador(imprimirLicenciaVista, this.licenciaModelo);
+        imprimirLicenciaVista.conectaControlador(imprimirLicenciaControlador);
+        imprimirLicenciaControlador.iniciar();
+        imprimirLicenciaVista.setVisible(true);
     }
 
     @Override

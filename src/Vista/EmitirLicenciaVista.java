@@ -26,8 +26,8 @@ public class EmitirLicenciaVista extends javax.swing.JFrame{
     }
 
     public void concetaControlador(EmitirLicenciaControlador c){
-        this.btnAceptar.addActionListener(c);
-        this.btnAceptar.setActionCommand("ACEPTAR");
+        this.btnEmitir.addActionListener(c);
+        this.btnEmitir.setActionCommand("EMITIR");
     
         this.btnCancelar.addActionListener(c);
         this.btnCancelar.setActionCommand("CANCELAR");
@@ -56,7 +56,7 @@ public class EmitirLicenciaVista extends javax.swing.JFrame{
         tfObservacion = new javax.swing.JTextField();
         cbListaClaseLicencia = new javax.swing.JComboBox<>();
         btnCancelar = new javax.swing.JButton();
-        btnAceptar = new javax.swing.JButton();
+        btnEmitir = new javax.swing.JButton();
         dccFechaEmision = new com.toedter.calendar.JDateChooser();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -87,7 +87,7 @@ public class EmitirLicenciaVista extends javax.swing.JFrame{
 
         btnCancelar.setText("Cancelar");
 
-        btnAceptar.setText("Aceptar");
+        btnEmitir.setText("Emitir");
 
         jLabel8.setText("Datos del titular:");
 
@@ -182,7 +182,7 @@ public class EmitirLicenciaVista extends javax.swing.JFrame{
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnAceptar)
+                                .addComponent(btnEmitir)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnCancelar))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -234,7 +234,7 @@ public class EmitirLicenciaVista extends javax.swing.JFrame{
                 .addComponent(lblTelefonoEmpleado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAceptar)
+                    .addComponent(btnEmitir)
                     .addComponent(btnCancelar))
                 .addContainerGap())
         );
@@ -250,8 +250,8 @@ public class EmitirLicenciaVista extends javax.swing.JFrame{
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnAceptar;
     public javax.swing.JButton btnCancelar;
+    public javax.swing.JButton btnEmitir;
     public javax.swing.JButton btnFiltroTitulares;
     public javax.swing.JComboBox<String> cbListaCategoria;
     public javax.swing.JComboBox<String> cbListaClaseLicencia;
