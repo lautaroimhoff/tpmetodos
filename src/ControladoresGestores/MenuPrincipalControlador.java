@@ -7,6 +7,7 @@ package ControladoresGestores;
 
 import Vista.AltaTitularVista;
 import Vista.EmitirLicenciaVista;
+import Vista.FiltrarLicenciaPorCriterioVista;
 import Vista.MenuPrincipalVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,6 +42,13 @@ public class MenuPrincipalControlador implements ActionListener{
                 altaTitularVista.concetaControlador(altaTitularControlador);
                 altaTitularControlador.iniciar();
                 altaTitularVista.setVisible(true);                                                                                                     
+                this.menuPrincipalVista.setVisible(false);
+                break;
+             case "FILTRO_LICENCIAS":
+                FiltrarLicenciaPorCriterioVista filtrarLicenciaPorCriterioVista = new FiltrarLicenciaPorCriterioVista();
+                FiltrarLicenciaPorCriterioControlador filtrarLicenciaPorCriterioControlador = new FiltrarLicenciaPorCriterioControlador(filtrarLicenciaPorCriterioVista);
+                filtrarLicenciaPorCriterioVista.concetaControlador(filtrarLicenciaPorCriterioControlador);
+                filtrarLicenciaPorCriterioVista.setVisible(true);                                                                                                     
                 this.menuPrincipalVista.setVisible(false);
                 break;
         }
