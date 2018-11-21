@@ -6,6 +6,7 @@
 package DAOs;
 
 import Entity.Licencia;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -131,6 +132,59 @@ public class LicenciaDAO
 
         return listaLicencias; 
     }  
+    
+    public ArrayList<Licencia> buscarPorCriterios(String nombre, String apellido, Integer dni, Integer numerolicencia, String grupo, String factor, String clase, Boolean donante ) throws HibernateException {
+        List<Object> licencias = new ArrayList<>();
+        try {
+            iniciaOperacion();
+            String query = new String();
+            
+            if (!nombre.isEmpty()) {
+                query += "l.titular.nombre = '" + nombre + "' AND ";
+            }
+            if (dni != null) {
+                query += "l.titular.dni = " + dni.toString() + " AND ";
+            }
+            if (!apellido.isEmpty()) {
+                query += "l.titular.apellido = '" + apellido + "' AND ";
+            }
+            if(numerolicencia!=null)
+            {
+                query += "l.numerolicencia = " + numerolicencia.toString() + " AND ";
+            }
+            if (clase != "-") {
+                query += "l.clase = '" + clase + "' AND ";
+            }
+            if (grupo != "-") {
+                query += "l.titular.grupoSanguineo = '" + grupo + "' AND ";
+            }
+            if (factor != "-") {
+                query += "l.titular.factorRh = '" + factor + "' AND ";
+            }
+            if (donante != null) {
+                query += "l.titular.esDonante = " + ((donante) ? "1" : "0") + " AND ";
+            }
+            
+            if(!query.isEmpty()){
+                query = query.substring(0, query.length()-4);
+            }
+            query = "FROM Licencia l" + ((query.isEmpty())?"":" WHERE ") + query;
+
+            //query += "l.titular.dni = t.dni";
+            
+            licencias = sesion.createQuery(query).list();
+        } finally 
+        { 
+            sesion.close(); 
+        } 
+        ArrayList<Licencia> result = new ArrayList<>();
+        for (Object o : licencias) {
+            result.add((Licencia) o);
+        }
+        
+        return result;
+        
+    }
 
     private void iniciaOperacion() throws HibernateException 
     { 
