@@ -7,6 +7,12 @@ package Vista;
 
 import ControladoresGestores.FiltrarLicenciaPorCriterioControlador;
 import ControladoresGestores.MenuPrincipalControlador;
+import Entity.Licencia;
+import java.util.ArrayList;
+import javax.swing.ButtonGroup;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -14,9 +20,6 @@ import ControladoresGestores.MenuPrincipalControlador;
  */
 public class FiltrarLicenciaPorCriterioVista extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FiltrarLicenciaPorCriterio
-     */
     public FiltrarLicenciaPorCriterioVista() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -32,6 +35,7 @@ public class FiltrarLicenciaPorCriterioVista extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        donanteGroup = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         nombreEditText = new javax.swing.JTextField();
@@ -40,13 +44,9 @@ public class FiltrarLicenciaPorCriterioVista extends javax.swing.JFrame {
         apellidoLabel = new javax.swing.JLabel();
         dniEditText = new javax.swing.JTextField();
         dniLabel = new javax.swing.JLabel();
-        domicilioLabel = new javax.swing.JLabel();
-        domicilioEditText = new javax.swing.JTextField();
         nroEditText = new javax.swing.JTextField();
         claseLabel = new javax.swing.JLabel();
         donanteLabel = new javax.swing.JLabel();
-        donanteSiButton = new javax.swing.JRadioButton();
-        donanteNoButton = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaLicencias = new javax.swing.JTable();
         nroLabel = new javax.swing.JLabel();
@@ -57,6 +57,8 @@ public class FiltrarLicenciaPorCriterioVista extends javax.swing.JFrame {
         cbGrupoSanguineoTitular = new javax.swing.JComboBox<>();
         cbRHTitular = new javax.swing.JComboBox<>();
         claseCombo = new javax.swing.JComboBox<>();
+        donanteSiButton = new javax.swing.JRadioButton();
+        donanteNoButton = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,36 +72,28 @@ public class FiltrarLicenciaPorCriterioVista extends javax.swing.JFrame {
 
         dniLabel.setText("DNI:");
 
-        domicilioLabel.setText("Domicilio:");
-
         claseLabel.setText("Clase:");
 
         donanteLabel.setText("Donante:");
 
-        donanteSiButton.setText("Sí");
-        donanteSiButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        donanteNoButton.setText("No");
-        donanteNoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
         tablaLicencias.setAutoCreateRowSorter(true);
         tablaLicencias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "DNI", "Nombre", "Apellido", "Domicilio", "Tipo Licencia", "Fecha Vencimiento", "Grupo/Factor Sanguineo"
+                "DNI", "Nombre", "Apellido", "Tipo Licencia", "Fecha Vencimiento", "Grupo/Factor Sanguineo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -146,8 +140,16 @@ public class FiltrarLicenciaPorCriterioVista extends javax.swing.JFrame {
 
         cbRHTitular.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "+", "-" }));
 
-        claseCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "A", "B", "C", "D", "E", "F" }));
+        claseCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "A", "B", "C", "D", "E", "F", "G" }));
         claseCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        donanteGroup.add(donanteSiButton);
+        donanteSiButton.setText("Sí");
+        donanteSiButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        donanteGroup.add(donanteNoButton);
+        donanteNoButton.setText("No");
+        donanteNoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,20 +167,15 @@ public class FiltrarLicenciaPorCriterioVista extends javax.swing.JFrame {
                                     .addComponent(jScrollPane1)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(nombreLabel)
-                                                        .addComponent(dniLabel))
-                                                    .addGap(18, 18, 18))
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(domicilioLabel)
-                                                    .addGap(11, 11, 11)))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(nombreLabel)
+                                                    .addComponent(dniLabel))
+                                                .addGap(18, 18, 18))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(claseLabel)
                                                 .addGap(31, 31, 31)))
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(domicilioEditText, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(nombreEditText, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(dniEditText, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
                                             .addComponent(claseCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, 319, Short.MAX_VALUE))
@@ -193,15 +190,15 @@ public class FiltrarLicenciaPorCriterioVista extends javax.swing.JFrame {
                                             .addComponent(apellidoEditText, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(nroEditText, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(donanteSiButton)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(donanteNoButton))
-                                            .addGroup(layout.createSequentialGroup()
                                                 .addComponent(cbGrupoSanguineoTitular, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jLabel13)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(cbRHTitular, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
+                                                .addComponent(cbRHTitular, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(donanteSiButton)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(donanteNoButton)))))))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -235,26 +232,25 @@ public class FiltrarLicenciaPorCriterioVista extends javax.swing.JFrame {
                     .addComponent(nroLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(domicilioLabel)
-                    .addComponent(domicilioEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(grupoLabel)
                     .addComponent(jLabel13)
                     .addComponent(cbGrupoSanguineoTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbRHTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbRHTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(claseCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(claseLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(claseLabel)
-                    .addComponent(donanteLabel)
-                    .addComponent(donanteSiButton)
-                    .addComponent(donanteNoButton)
-                    .addComponent(claseCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(donanteSiButton)
+                        .addComponent(donanteNoButton))
+                    .addComponent(donanteLabel))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -262,38 +258,41 @@ public class FiltrarLicenciaPorCriterioVista extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
 
-       /* //Se crea un arreglo para pasarle al metodo de búsqueda del gestor
-        //de licencias para la búsqueda
-        ArrayList<Object> criterios = new ArrayList<>(11);
+        ArrayList<Object> criterios = new ArrayList<Object>(8);
+        criterios.add(0);
+        criterios.add(1);
+        criterios.add(2);
+        criterios.add(3);
+        criterios.add(4);
+        criterios.add(5);
+        criterios.add(6);
+        criterios.add(7);
+
         criterios.set(0, this.nombreEditText.getText());
         criterios.set(1, this.apellidoEditText.getText());
         criterios.set(2, this.dniEditText.getText());
         criterios.set(3, this.nroEditText.getText());
-        criterios.set(4, this.domicilioEditText.getText());
-        criterios.set(5, this.grupoCombo.getSelectedItem());
-        criterios.set(6, this.factorCombo.getSelectedItem());
-        criterios.set(7, this.claseCombo.getSelectedItem());
-        criterios.set(8, this.donanteSiButton.isSelected());
-        criterios.set(9, this.vigenteSiCheck.isSelected());
-        criterios.set(10, this.vigenteNoCheck.isSelected());
+        criterios.set(4, this.cbGrupoSanguineoTitular.getSelectedItem());
+        criterios.set(5, this.cbRHTitular.getSelectedItem());
+        criterios.set(6, this.claseCombo.getSelectedItem());
+        criterios.set(7, this.donanteSiButton.isSelected());
 
         ArrayList<Licencia> lista = new ArrayList<>();
-        lista = GestorLicencias.buscarPorCriterios(criterios);
+        lista = FiltrarLicenciaPorCriterioControlador.buscarPorCriterios(criterios);
 
         DefaultTableModel model = (DefaultTableModel) this.tablaLicencias.getModel();
         for (int i = 0; i < lista.size(); i++) {
-            String grupoFactor = lista.get(i).getTitular().getGrupoSanguineo() + lista.get(i).getTitular().getFactorRh();
+            String grupoFactor = lista.get(i).getTitular().getGruposanguineo().getGruposanguineo() + lista.get(i).getTitular().getGruposanguineo().getFactor();
             Object[] fila = new Object[]{
+                lista.get(i).getTitular().getNumerodocumento(),
+                 lista.get(i).getTitular().getNombre(),
                 lista.get(i).getTitular().getApellido(),
-                lista.get(i).getTitular().getNombre(),
-                lista.get(i).getTitular().getDni(),
-                lista.get(i).getTitular().getDomicilio().asString(),
-                lista.get(i).getClase(),
-                lista.get(i).getFechaExpiracion(),
+                lista.get(i).getClaselicencia().getClaselicencia(),
+                lista.get(i).getFechavencimiento(),
                 grupoFactor
             };
             model.addRow(fila);
-        }*/
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
@@ -308,13 +307,7 @@ public class FiltrarLicenciaPorCriterioVista extends javax.swing.JFrame {
     private void cbGrupoSanguineoTitularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbGrupoSanguineoTitularActionPerformed
 
     }//GEN-LAST:event_cbGrupoSanguineoTitularActionPerformed
-
-    public void concetaControlador(FiltrarLicenciaPorCriterioControlador c){
-        this.btnBuscar.addActionListener(c);
-        this.btnBuscar.setActionCommand("FILTRO_LICENCIAS");
-        
-    }
-    
+  
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -359,8 +352,7 @@ public class FiltrarLicenciaPorCriterioVista extends javax.swing.JFrame {
     private javax.swing.JLabel claseLabel;
     private javax.swing.JTextField dniEditText;
     private javax.swing.JLabel dniLabel;
-    private javax.swing.JTextField domicilioEditText;
-    private javax.swing.JLabel domicilioLabel;
+    private javax.swing.ButtonGroup donanteGroup;
     private javax.swing.JLabel donanteLabel;
     private javax.swing.JRadioButton donanteNoButton;
     private javax.swing.JRadioButton donanteSiButton;

@@ -18,12 +18,12 @@ import org.hibernate.Transaction;
  */
 public class LicenciaDAO
 {  
-    private Session sesion; 
-    private Transaction tx;  
+    private static Session sesion; 
+    private static Transaction tx;  
     
    
 
-    public void guardaLicencia(Licencia licencia) throws HibernateException 
+    public static void guardaLicencia(Licencia licencia) throws HibernateException 
     { 
         try 
         { 
@@ -40,7 +40,7 @@ public class LicenciaDAO
         }  
     }  
 
-    public void actualizaLicencia(Licencia licencia) throws HibernateException 
+    public static void actualizaLicencia(Licencia licencia) throws HibernateException 
     { 
         try 
         { 
@@ -57,7 +57,7 @@ public class LicenciaDAO
         } 
     }  
 
-    public void eliminaLicencia(Licencia licencia) throws HibernateException 
+    public static void eliminaLicencia(Licencia licencia) throws HibernateException 
     { 
         try 
         { 
@@ -74,7 +74,7 @@ public class LicenciaDAO
         } 
     }  
 
-    public Licencia obtenLicencia(int idLicencia) throws HibernateException 
+    public static Licencia obtenLicencia(int idLicencia) throws HibernateException 
     { 
         Licencia licencia = null;  
         try 
@@ -88,7 +88,7 @@ public class LicenciaDAO
 
         return licencia; 
     }  
-    public Licencia obtenLicencia(String nombreLicencia) throws HibernateException 
+    public static Licencia obtenLicencia(String nombreLicencia) throws HibernateException 
     { 
         Licencia licencia = null;  
         try 
@@ -102,7 +102,7 @@ public class LicenciaDAO
 
         return licencia; 
     }  
-    public Licencia obtenLicencia(int idTitular, int idClaseLicencia) throws HibernateException 
+    public static Licencia obtenLicencia(int idTitular, int idClaseLicencia) throws HibernateException 
     { 
         Licencia licencia = null;  
         try 
@@ -117,7 +117,7 @@ public class LicenciaDAO
         return licencia; 
     }
 
-    public List<Licencia> obtenListaLicencias() throws HibernateException 
+    public static List<Licencia> obtenListaLicencias() throws HibernateException 
     { 
         List<Licencia> listaLicencias = null;  
 
@@ -133,7 +133,7 @@ public class LicenciaDAO
         return listaLicencias; 
     }  
     
-    public ArrayList<Licencia> buscarPorCriterios(String nombre, String apellido, Integer dni, Integer numerolicencia, String grupo, String factor, String clase, Boolean donante ) throws HibernateException {
+    public static ArrayList<Licencia> buscarPorCriterios(String nombre, String apellido, String numerodocumento, Integer numerolicencia, String gruposanguineo, String factor, String claselicencia, Boolean donante ) throws HibernateException {
         List<Object> licencias = new ArrayList<>();
         try {
             iniciaOperacion();
@@ -142,8 +142,8 @@ public class LicenciaDAO
             if (!nombre.isEmpty()) {
                 query += "l.titular.nombre = '" + nombre + "' AND ";
             }
-            if (dni != null) {
-                query += "l.titular.dni = " + dni.toString() + " AND ";
+            if (numerodocumento != null) {
+                query += "l.titular.numerodocumento = '" + numerodocumento.toString() + "' AND ";
             }
             if (!apellido.isEmpty()) {
                 query += "l.titular.apellido = '" + apellido + "' AND ";
@@ -152,17 +152,17 @@ public class LicenciaDAO
             {
                 query += "l.numerolicencia = " + numerolicencia.toString() + " AND ";
             }
-            if (clase != "-") {
-                query += "l.clase = '" + clase + "' AND ";
+            if (!claselicencia.equals("-")) {
+                query += "l.claselicencia.claselicencia = '" + claselicencia + "' AND ";
             }
-            if (grupo != "-") {
-                query += "l.titular.grupoSanguineo = '" + grupo + "' AND ";
+            if (!gruposanguineo.equals("-")) {
+                query += "l.titular.gruposanguineo.gruposanguineo = '" + gruposanguineo + "' AND ";
             }
-            if (factor != "-") {
-                query += "l.titular.factorRh = '" + factor + "' AND ";
+            if (!factor.equals("-")) {
+                query += "l.titular.gruposanguineo.factor = '" + factor + "' AND ";
             }
             if (donante != null) {
-                query += "l.titular.esDonante = " + ((donante) ? "1" : "0") + " AND ";
+                query += "l.titular.donante = " + ((donante) ? "1" : "0") + " AND ";
             }
             
             if(!query.isEmpty()){
@@ -186,13 +186,13 @@ public class LicenciaDAO
         
     }
 
-    private void iniciaOperacion() throws HibernateException 
+    private static void iniciaOperacion() throws HibernateException 
     { 
         sesion = HibernateUtil.getSessionFactory().openSession(); 
         tx = sesion.beginTransaction(); 
     }  
 
-    private void manejaExcepcion(HibernateException he) throws HibernateException 
+    private static void manejaExcepcion(HibernateException he) throws HibernateException 
     { 
         tx.rollback(); 
         throw new HibernateException("Ocurrió un error en la capa de acceso a datos", he); 

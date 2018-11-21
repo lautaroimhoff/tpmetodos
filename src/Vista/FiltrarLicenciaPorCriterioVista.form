@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="donanteGroup">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -35,18 +39,12 @@
                                   <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="nombreLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="dniLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="nombreLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="dniLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="domicilioLabel" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                                              </Group>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="claseLabel" min="-2" max="-2" attributes="0"/>
@@ -54,7 +52,6 @@
                                           </Group>
                                       </Group>
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="domicilioEditText" alignment="0" max="32767" attributes="0"/>
                                           <Component id="nombreEditText" alignment="0" max="32767" attributes="0"/>
                                           <Component id="dniEditText" alignment="1" pref="319" max="32767" attributes="0"/>
                                           <Component id="claseCombo" alignment="0" pref="319" max="32767" attributes="0"/>
@@ -71,16 +68,16 @@
                                           <Component id="apellidoEditText" alignment="0" min="-2" pref="319" max="-2" attributes="0"/>
                                           <Component id="nroEditText" alignment="0" min="-2" pref="319" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="donanteSiButton" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="donanteNoButton" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
                                               <Component id="cbGrupoSanguineoTitular" min="-2" pref="110" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Component id="cbRHTitular" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="donanteSiButton" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="donanteNoButton" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -130,20 +127,20 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="domicilioLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="domicilioEditText" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="grupoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cbGrupoSanguineoTitular" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cbRHTitular" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="claseCombo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="claseLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="claseLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="donanteLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="donanteSiButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="donanteNoButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="claseCombo" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="donanteSiButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="donanteNoButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="donanteLabel" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="209" max="-2" attributes="0"/>
@@ -152,7 +149,7 @@
                   <Component id="btnBuscar" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                   <Component id="btnVolver" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="16" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -190,13 +187,6 @@
         <Property name="text" type="java.lang.String" value="DNI:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="domicilioLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Domicilio:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="domicilioEditText">
-    </Component>
     <Component class="javax.swing.JTextField" name="nroEditText">
     </Component>
     <Component class="javax.swing.JLabel" name="claseLabel">
@@ -207,22 +197,6 @@
     <Component class="javax.swing.JLabel" name="donanteLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Donante:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="donanteSiButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="S&#xed;"/>
-        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor de Mano"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="donanteNoButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="No"/>
-        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor de Mano"/>
-        </Property>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -236,11 +210,10 @@
           <Properties>
             <Property name="autoCreateRowSorter" type="boolean" value="true"/>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="7" rowCount="5">
+              <Table columnCount="6" rowCount="5">
                 <Column editable="false" title="DNI" type="java.lang.Integer"/>
                 <Column editable="false" title="Nombre" type="java.lang.String"/>
                 <Column editable="false" title="Apellido" type="java.lang.String"/>
-                <Column editable="false" title="Domicilio" type="java.lang.String"/>
                 <Column editable="false" title="Tipo Licencia" type="java.lang.String"/>
                 <Column editable="false" title="Fecha Vencimiento" type="java.lang.String"/>
                 <Column editable="false" title="Grupo/Factor Sanguineo" type="java.lang.String"/>
@@ -248,11 +221,6 @@
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="2">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -371,7 +339,7 @@
     <Component class="javax.swing.JComboBox" name="claseCombo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="7">
+          <StringArray count="8">
             <StringItem index="0" value="-"/>
             <StringItem index="1" value="A"/>
             <StringItem index="2" value="B"/>
@@ -379,6 +347,7 @@
             <StringItem index="4" value="D"/>
             <StringItem index="5" value="E"/>
             <StringItem index="6" value="F"/>
+            <StringItem index="7" value="G"/>
           </StringArray>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -388,6 +357,28 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="donanteSiButton">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="donanteGroup"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="S&#xed;"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor de Mano"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="donanteNoButton">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="donanteGroup"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="No"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor de Mano"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

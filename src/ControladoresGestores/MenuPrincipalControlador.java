@@ -46,8 +46,6 @@ public class MenuPrincipalControlador implements ActionListener{
                 break;
              case "FILTRO_LICENCIAS":
                 FiltrarLicenciaPorCriterioVista filtrarLicenciaPorCriterioVista = new FiltrarLicenciaPorCriterioVista();
-                FiltrarLicenciaPorCriterioControlador filtrarLicenciaPorCriterioControlador = new FiltrarLicenciaPorCriterioControlador(filtrarLicenciaPorCriterioVista);
-                filtrarLicenciaPorCriterioVista.concetaControlador(filtrarLicenciaPorCriterioControlador);
                 filtrarLicenciaPorCriterioVista.setVisible(true);                                                                                                     
                 this.menuPrincipalVista.setVisible(false);
                 break;

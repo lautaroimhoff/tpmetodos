@@ -118,7 +118,6 @@
     <Component class="javax.swing.JButton" name="buttonConsultarLicenciasVigentes">
       <Properties>
         <Property name="text" type="java.lang.String" value="Consultar licencias vigentes"/>
-        <Property name="enabled" type="boolean" value="false"/>
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
       <Events>
@@ -128,6 +127,7 @@
     <Component class="javax.swing.JButton" name="buttonConsultarLicenciasExpiradas">
       <Properties>
         <Property name="text" type="java.lang.String" value="Consultar licencias expiradas"/>
+        <Property name="enabled" type="boolean" value="false"/>
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
       <Events>
