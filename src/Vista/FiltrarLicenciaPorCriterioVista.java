@@ -79,11 +79,7 @@ public class FiltrarLicenciaPorCriterioVista extends javax.swing.JFrame {
         tablaLicencias.setAutoCreateRowSorter(true);
         tablaLicencias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "DNI", "Nombre", "Apellido", "Tipo Licencia", "Fecha Vencimiento", "Grupo/Factor Sanguineo"
@@ -259,6 +255,7 @@ public class FiltrarLicenciaPorCriterioVista extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
 
         ArrayList<Object> criterios = new ArrayList<Object>(8);
+        
         criterios.add(0);
         criterios.add(1);
         criterios.add(2);
@@ -279,13 +276,18 @@ public class FiltrarLicenciaPorCriterioVista extends javax.swing.JFrame {
 
         ArrayList<Licencia> lista = new ArrayList<>();
         lista = FiltrarLicenciaPorCriterioControlador.buscarPorCriterios(criterios);
-
+        
         DefaultTableModel model = (DefaultTableModel) this.tablaLicencias.getModel();
+        int sizeModel = model.getRowCount();
+	    if(sizeModel !=0){
+                model.setRowCount(0);
+            }
+        
         for (int i = 0; i < lista.size(); i++) {
             String grupoFactor = lista.get(i).getTitular().getGruposanguineo().getGruposanguineo() + lista.get(i).getTitular().getGruposanguineo().getFactor();
             Object[] fila = new Object[]{
                 lista.get(i).getTitular().getNumerodocumento(),
-                 lista.get(i).getTitular().getNombre(),
+                lista.get(i).getTitular().getNombre(),
                 lista.get(i).getTitular().getApellido(),
                 lista.get(i).getClaselicencia().getClaselicencia(),
                 lista.get(i).getFechavencimiento(),
@@ -293,6 +295,7 @@ public class FiltrarLicenciaPorCriterioVista extends javax.swing.JFrame {
             };
             model.addRow(fila);
         }
+       
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed

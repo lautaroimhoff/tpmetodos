@@ -6,7 +6,9 @@
 package DAOs;
 
 import Entity.Licencia;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -135,6 +137,8 @@ public class LicenciaDAO
     
     public static ArrayList<Licencia> buscarPorCriterios(String nombre, String apellido, String numerodocumento, Integer numerolicencia, String gruposanguineo, String factor, String claselicencia, Boolean donante ) throws HibernateException {
         List<Object> licencias = new ArrayList<>();
+        Date now = new Date(System.currentTimeMillis());
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
         try {
             iniciaOperacion();
             String query = new String();
@@ -161,16 +165,18 @@ public class LicenciaDAO
             if (!factor.equals("-")) {
                 query += "l.titular.gruposanguineo.factor = '" + factor + "' AND ";
             }
-            if (donante != null) {
+            if (donante != false) {
                 query += "l.titular.donante = " + ((donante) ? "1" : "0") + " AND ";
+            }
+            if(true){
+                query += "l.fechavencimiento > NOW()" + " AND ";
             }
             
             if(!query.isEmpty()){
                 query = query.substring(0, query.length()-4);
             }
             query = "FROM Licencia l" + ((query.isEmpty())?"":" WHERE ") + query;
-
-            //query += "l.titular.dni = t.dni";
+            System.out.println(query);
             
             licencias = sesion.createQuery(query).list();
         } finally 
