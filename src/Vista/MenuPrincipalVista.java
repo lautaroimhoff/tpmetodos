@@ -84,7 +84,6 @@ public class MenuPrincipalVista extends javax.swing.JFrame {
         });
 
         buttonConsultarLicenciasExpiradas.setText("Consultar licencias expiradas");
-        buttonConsultarLicenciasExpiradas.setEnabled(false);
         buttonConsultarLicenciasExpiradas.setFocusPainted(false);
         buttonConsultarLicenciasExpiradas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,6 +158,9 @@ public class MenuPrincipalVista extends javax.swing.JFrame {
         
         this.buttonConsultarLicenciasVigentes.addActionListener(c);
         this.buttonConsultarLicenciasVigentes.setActionCommand("FILTRO_LICENCIAS");
+        
+        this.buttonConsultarLicenciasExpiradas.addActionListener(c);
+        this.buttonConsultarLicenciasExpiradas.setActionCommand("FILTRO_VENCIDAS");
     }
     private void btnEmitirLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmitirLicenciaActionPerformed
 

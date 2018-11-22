@@ -137,8 +137,6 @@ public class LicenciaDAO
     
     public static ArrayList<Licencia> buscarPorCriterios(String nombre, String apellido, String numerodocumento, Integer numerolicencia, String gruposanguineo, String factor, String claselicencia, Boolean donante ) throws HibernateException {
         List<Object> licencias = new ArrayList<>();
-        Date now = new Date(System.currentTimeMillis());
-        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
         try {
             iniciaOperacion();
             String query = new String();
@@ -176,7 +174,6 @@ public class LicenciaDAO
                 query = query.substring(0, query.length()-4);
             }
             query = "FROM Licencia l" + ((query.isEmpty())?"":" WHERE ") + query;
-            System.out.println(query);
             
             licencias = sesion.createQuery(query).list();
         } finally 
@@ -191,6 +188,24 @@ public class LicenciaDAO
         return result;
         
     }
+    public static ArrayList<Licencia> buscarPorFechadeVencimiento(String criterio) throws HibernateException{
+        List<Object> licencias = new ArrayList<>();
+        try {
+            iniciaOperacion();
+            String query = new String();
+            query = "FROM Licencia l WHERE l.fechavencimiento >= to_date('" +criterio+ "', 'DD/MM/YYYY')";
+            licencias = sesion.createQuery(query).list();
+        }finally 
+        { 
+            sesion.close(); 
+        }
+        ArrayList<Licencia> result = new ArrayList<>();
+        for (Object o : licencias) {
+            result.add((Licencia) o);
+        }
+        return result;
+    }
+    
 
     private static void iniciaOperacion() throws HibernateException 
     { 
