@@ -44,12 +44,10 @@ public class FiltrarLicenciaPorCriterioVista extends javax.swing.JFrame {
         apellidoLabel = new javax.swing.JLabel();
         dniEditText = new javax.swing.JTextField();
         dniLabel = new javax.swing.JLabel();
-        nroEditText = new javax.swing.JTextField();
         claseLabel = new javax.swing.JLabel();
         donanteLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaLicencias = new javax.swing.JTable();
-        nroLabel = new javax.swing.JLabel();
         grupoLabel = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
@@ -103,8 +101,6 @@ public class FiltrarLicenciaPorCriterioVista extends javax.swing.JFrame {
         tablaLicencias.setColumnSelectionAllowed(true);
         jScrollPane1.setViewportView(tablaLicencias);
         tablaLicencias.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-
-        nroLabel.setText("Nro. Licencia:");
 
         grupoLabel.setText("Grupo Sanguineo:");
 
@@ -162,39 +158,43 @@ public class FiltrarLicenciaPorCriterioVista extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jScrollPane1)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(2, 2, 2)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(nombreLabel)
                                                     .addComponent(dniLabel))
-                                                .addGap(18, 18, 18))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(claseLabel)
-                                                .addGap(31, 31, 31)))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(nombreEditText, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(dniEditText, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
-                                            .addComponent(claseCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, 319, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(grupoLabel)
-                                            .addComponent(apellidoLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(nroLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(donanteLabel, javax.swing.GroupLayout.Alignment.TRAILING))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(apellidoEditText, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(nroEditText, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(cbGrupoSanguineoTitular, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                    .addComponent(nombreEditText, javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(dniEditText, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(grupoLabel)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(cbGrupoSanguineoTitular, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                                                 .addComponent(jLabel13)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(cbRHTitular, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addComponent(cbRHTitular, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(donanteSiButton)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(donanteNoButton)))))))
+                                                .addGap(49, 49, 49)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(claseLabel)
+                                                            .addComponent(apellidoLabel))
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(apellidoEditText, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(donanteLabel)
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(donanteSiButton)
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(donanteNoButton))))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(claseCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -224,29 +224,24 @@ public class FiltrarLicenciaPorCriterioVista extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dniLabel)
                     .addComponent(dniEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nroEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nroLabel))
+                    .addComponent(claseCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(claseLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(grupoLabel)
                     .addComponent(jLabel13)
-                    .addComponent(cbGrupoSanguineoTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbRHTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(claseCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(claseLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(donanteSiButton)
-                        .addComponent(donanteNoButton))
-                    .addComponent(donanteLabel))
+                    .addComponent(cbGrupoSanguineoTitular, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbRHTitular)
+                    .addComponent(donanteLabel)
+                    .addComponent(donanteSiButton)
+                    .addComponent(donanteNoButton))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                    .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -263,16 +258,14 @@ public class FiltrarLicenciaPorCriterioVista extends javax.swing.JFrame {
         criterios.add(4);
         criterios.add(5);
         criterios.add(6);
-        criterios.add(7);
 
         criterios.set(0, this.nombreEditText.getText());
         criterios.set(1, this.apellidoEditText.getText());
         criterios.set(2, this.dniEditText.getText());
-        criterios.set(3, this.nroEditText.getText());
-        criterios.set(4, this.cbGrupoSanguineoTitular.getSelectedItem());
-        criterios.set(5, this.cbRHTitular.getSelectedItem());
-        criterios.set(6, this.claseCombo.getSelectedItem());
-        criterios.set(7, this.donanteSiButton.isSelected());
+        criterios.set(3, this.cbGrupoSanguineoTitular.getSelectedItem());
+        criterios.set(4, this.cbRHTitular.getSelectedItem());
+        criterios.set(5, this.claseCombo.getSelectedItem());
+        criterios.set(6, this.donanteSiButton.isSelected());
 
         ArrayList<Licencia> lista = new ArrayList<>();
         lista = FiltrarLicenciaPorCriterioControlador.buscarPorCriterios(criterios);
@@ -366,8 +359,6 @@ public class FiltrarLicenciaPorCriterioVista extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField nombreEditText;
     private javax.swing.JLabel nombreLabel;
-    private javax.swing.JTextField nroEditText;
-    private javax.swing.JLabel nroLabel;
     private javax.swing.JTable tablaLicencias;
     // End of variables declaration//GEN-END:variables
 }

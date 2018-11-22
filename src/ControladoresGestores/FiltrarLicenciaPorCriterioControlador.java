@@ -39,28 +39,20 @@ public class FiltrarLicenciaPorCriterioControlador{
             criteriosArray.add(null);
         }
         
-        //nroLic
-        if (!criterios.get(3).equals("")) {
-            criteriosArray.add(Integer.parseInt((String) criterios.get(3)));
-        } else {
-            criteriosArray.add(null);
-        }
-        
-        criteriosArray.add(criterios.get(4)); //grupo
-        criteriosArray.add(criterios.get(5)); //factor
-        criteriosArray.add(criterios.get(6)); //clase
-        criteriosArray.add((Boolean) criterios.get(7)); //donanteSi
+        criteriosArray.add(criterios.get(3)); //grupo
+        criteriosArray.add(criterios.get(4)); //factor
+        criteriosArray.add(criterios.get(5)); //clase
+        criteriosArray.add((Boolean) criterios.get(6)); //donanteSi
 
         ArrayList<Licencia> lista = new ArrayList<>();
         lista = LicenciaDAO.buscarPorCriterios(
                 (String) criteriosArray.get(0),
                 (String) criteriosArray.get(1),
                 (String) criteriosArray.get(2),
-                (Integer) criteriosArray.get(3),
+                (String) criteriosArray.get(3),
                 (String) criteriosArray.get(4),
                 (String) criteriosArray.get(5),
-                (String) criteriosArray.get(6),
-                (Boolean) criteriosArray.get(7)
+                (Boolean) criteriosArray.get(6)
         );
         return lista;
     }
