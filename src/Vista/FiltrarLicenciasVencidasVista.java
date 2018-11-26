@@ -179,7 +179,7 @@ public class FiltrarLicenciasVencidasVista extends javax.swing.JFrame {
                     lista.get(i).getTitular().getFechanacimiento(),
                     lista.get(i).getCategorialicencia().getCategorialicencia(),
                     lista.get(i).getClaselicencia().getClaselicencia(),
-                    lista.get(i).getTitular().getFechagestion(),
+                    lista.get(i).getFechaemision(),
                     lista.get(i).getFechavencimiento(),
                 };
                 model.addRow(fila);

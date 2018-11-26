@@ -85,6 +85,12 @@ public class EmitirLicenciaVista extends javax.swing.JFrame{
 
         jLabel7.setText("Datos del empleado:");
 
+        cbListaCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbListaCategoriaActionPerformed(evt);
+            }
+        });
+
         btnCancelar.setText("Cancelar");
 
         btnEmitir.setText("Emitir");
@@ -242,6 +248,10 @@ public class EmitirLicenciaVista extends javax.swing.JFrame{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cbListaCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbListaCategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbListaCategoriaActionPerformed
 
     
     /*    */

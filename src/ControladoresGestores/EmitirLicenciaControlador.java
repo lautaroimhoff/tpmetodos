@@ -25,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -95,6 +96,9 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
             Object filaNueva[] = {titular.getNumerodocumento(), titular.getApellido(), titular.getNombre()};
             modeloTablaTitulares.addRow(filaNueva);
         }
+        
+        emitirLicenciaVista.dccFechaEmision.setDate(new Date());
+        emitirLicenciaVista.dccFechaEmision.setEnabled(false);
         
         emitirLicenciaVista.setLocationRelativeTo(null);
     }
@@ -225,6 +229,15 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
     private Licencia actualizarLicencia(Licencia l){
         l.setCategorialicencia(categoriaLicenciaDAO.obtenCategorialicencia(emitirLicenciaVista.cbListaCategoria.getSelectedItem().toString()));
         l.setFechaemision(emitirLicenciaVista.dccFechaEmision.getDate());
+        l.setHoraemision(emitirLicenciaVista.dccFechaEmision.getDate());
+        l.setObservacion(emitirLicenciaVista.tfObservacion.getText());
+        
+        return l;
+    }
+    
+    private Licencia actualizarLicenciaRenueva(Licencia l){
+        l.setCategorialicencia(categoriaLicenciaDAO.obtenCategorialicencia(emitirLicenciaVista.cbListaCategoria.getSelectedItem().toString()));
+        l.setFechaemision(emitirLicenciaVista.dccFechaEmision.getDate());
         l.setFechavencimiento(fechaVencimiento);
         l.setHoraemision(emitirLicenciaVista.dccFechaEmision.getDate());
         l.setObservacion(emitirLicenciaVista.tfObservacion.getText());
@@ -299,12 +312,53 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
                                 volver = true;
                             }
 
-                            
                         }
                         else{
                             JOptionPane.showMessageDialog(null, "El titular ya posee esta licencia");
                             volver = false;
                         }                        
+                    }
+                    
+                    //En caso de que la categoria sea "RENOVACION"
+                    if(emitirLicenciaVista.cbListaCategoria.getSelectedItem().toString().equals("Renovacion")){
+                        if(tieneLicenciaExistente()){
+                            Claselicencia claseLicenciaSeleccionada;
+                            claseLicenciaSeleccionada = claseLicenciaDAO.obtenClaselicencia(emitirLicenciaVista.cbListaClaseLicencia.getSelectedItem().toString());
+                            Licencia l = licenciaDAO.obtenLicencia(titular.getIdtitular(), claseLicenciaSeleccionada.getIdclaselicencia());
+                            
+                            //Busco las licencias vencidas
+                            Date fechaActual = new Date();
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy"); 
+                            String criterio = sdf.format(fechaActual);
+                            ArrayList<Licencia> vencidas = licenciaDAO.buscarPorFechadeVencimiento(criterio);
+                            
+                            //Veo si la licencia expiró
+                            Licencia aux = null;
+                            for(Licencia lic:vencidas){
+                                if(lic.getNumerolicencia()==l.getNumerolicencia()){
+                                    aux = lic;
+                                }
+                            }
+                            
+                            if(aux == null){ //licencia no venció -> se renueva porque se modificaron datos
+                                actualizarLicencia(l);
+                            }
+                            else{ //licencia vencida -> se renueva porque expiró
+                                actualizarLicenciaRenueva(l);
+                            }
+                            
+                            //Actualizar la licencia en la bd
+                            licenciaDAO.actualizaLicencia(l);
+                            JOptionPane.showMessageDialog(null, "Renovación realizada con éxito\n "
+                                + "Fecha de vencieminto: " + new SimpleDateFormat("dd-MM-yyyy").format(fechaVencimiento) + "\n "
+                                + "Costo: $" + costo);
+
+                            volver = true;
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(null, "El titular no posee esta licencia");
+                            volver = false;
+                        }
                     }
                     
                     //En caso de que la categoria sea "COPIA"

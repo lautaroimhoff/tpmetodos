@@ -28,13 +28,13 @@ public class CalcularVigencia {
         Boolean primeraVez = true;
         Date fechaActual = new Date();
         Calendar calendar = Calendar.getInstance();
-        int edad = fechaActual.getYear() - (fechaNacimiento.getYear()-1900); // Restamos 1900 porque getYear es 1900 + el año que le pasas
+        int edad = fechaActual.getYear() - (fechaNacimiento.getYear());
         
         switch(categoriaLicencia){
             case "Primera vez":
                 primeraVez = true;
                 break;
-            case "Renovación":
+            case "Renovacion":
                 primeraVez = false;
                 break;
         }
@@ -71,7 +71,5 @@ public class CalcularVigencia {
         calendar.set(Calendar.MONTH,fechaNacimiento.getMonth());
         return calendar;
         
-
     }
-
 }

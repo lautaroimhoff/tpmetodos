@@ -30,12 +30,6 @@ public class Tpmetodos {
         menuPrincipalControlador.iniciar();
         menuPrincipalVista.setVisible(true);
        
-        /*Date date = new Date(2000,10,25);
-        Calendar calendar = CalcularVigencia.CalcularVigencia(date, "Renovación");
-        int duracion = CalcularVigencia.getAñosVigencia(calendar);
-        System.out.println(duracion);
-        */
-
          //HibernateUtil.closeSessionFactory();
 }
 }
