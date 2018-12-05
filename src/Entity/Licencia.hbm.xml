@@ -14,7 +14,7 @@
         <many-to-one name="claselicencia" class="Entity.Claselicencia" fetch="select">
             <column name="idclaselicencia" />
         </many-to-one>
-        <many-to-one name="titular" class="Entity.Titular" fetch="select">
+        <many-to-one name="titular" class="Entity.Titular" fetch="select" lazy="false">
             <column name="idtitularreceptor" not-null="true" />
         </many-to-one>
         <many-to-one name="usuario" class="Entity.Usuario" fetch="select">

@@ -305,7 +305,7 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
                                 "Imprimir");
                             
                             if(seleccion == JOptionPane.OK_OPTION){
-                                imprimirLicencia();
+                                imprimirLicencia(licencia , costo);
                                 volver = false;
                             }
                             else{
@@ -400,9 +400,9 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
         }
     }
     
-    private void imprimirLicencia(){
+    private void imprimirLicencia(Licencia licencia , int Costo){
         ImprimirLicenciaVista imprimirLicenciaVista = new ImprimirLicenciaVista();
-        ImprimirLicenciaControlador imprimirLicenciaControlador = new ImprimirLicenciaControlador(imprimirLicenciaVista, this.licenciaModelo);
+        ImprimirLicenciaControlador imprimirLicenciaControlador = new ImprimirLicenciaControlador(imprimirLicenciaVista, licencia , costo);
         imprimirLicenciaVista.conectaControlador(imprimirLicenciaControlador);
         imprimirLicenciaControlador.iniciar();
         imprimirLicenciaVista.setVisible(true);

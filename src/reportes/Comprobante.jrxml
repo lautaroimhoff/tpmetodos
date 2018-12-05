@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Comprobante" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a9add851-2d22-4fc9-b949-b5b8c8cf7490">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="NroLicencia" class="java.lang.String"/>
+	<parameter name="Apellido" class="java.lang.String"/>
+	<parameter name="Nombre" class="java.lang.String"/>
+	<parameter name="FechaEmision" class="java.lang.String"/>
+	<parameter name="TipoLicencia" class="java.lang.String"/>
+	<parameter name="Vigencia" class="java.lang.String"/>
+	<parameter name="Precio" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band height="280" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="0" y="0" width="214" height="30" uuid="dccacf21-59ad-4a2d-a71a-857438a48881"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[Comprobante de Pago]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="35" width="500" height="2" uuid="d554a964-0646-4e07-bbed-cbf452ddfb0c"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="40" width="243" height="30" uuid="5c0e5d7a-2300-4341-a5f7-12fc6e71c4af"/>
+				<textElement>
+					<font size="15"/>
+				</textElement>
+				<text><![CDATA[Datos del solicitante:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="70" width="100" height="30" uuid="c5e60e35-7446-4cd3-9220-efcfbec7b879"/>
+				<text><![CDATA[Nombre: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="261" y="70" width="100" height="30" uuid="617a6313-e0c4-4eb5-aac9-4ece9ecea7a1"/>
+				<text><![CDATA[Apellido: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="130" width="100" height="30" uuid="9b006752-96e5-4856-bf19-a77178fbda91"/>
+				<text><![CDATA[Nro Licencia:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="5" width="100" height="30" uuid="e396ae9e-f52f-48eb-9019-e7cd8661a0a6"/>
+				<text><![CDATA[Fecha de creación: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="130" width="100" height="30" uuid="e396ae9e-f52f-48eb-9019-e7cd8661a0a6"/>
+				<text><![CDATA[Vigencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="100" width="100" height="30" uuid="0fd942e3-d44b-4c01-bc3b-cf243b606c37"/>
+				<text><![CDATA[Fecha otorgamiento]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="380" y="5" width="100" height="30" uuid="64840abd-9ffa-4896-9ab4-5326338374cb"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="70" width="114" height="30" uuid="93369973-055a-4fa3-a831-39b21dd058e9"/>
+				<textFieldExpression><![CDATA[$P{Nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="361" y="70" width="119" height="30" uuid="e06b71b3-ae45-471f-a272-1bd4c6c560ed"/>
+				<textFieldExpression><![CDATA[$P{Apellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="130" width="100" height="30" uuid="678edbed-172b-42b4-b79f-13fbc018f339"/>
+				<textFieldExpression><![CDATA[$P{NroLicencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="100" width="100" height="30" uuid="cc17aee9-343b-4e97-b03c-d71d4b61ecbc"/>
+				<textFieldExpression><![CDATA[$P{FechaEmision}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="130" width="100" height="30" uuid="9c09c857-d9e6-4fde-a038-e8fab5b11823"/>
+				<textFieldExpression><![CDATA[$P{Vigencia}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="160" width="500" height="2" uuid="4bb66302-100b-4382-820f-e0ee359d1569"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="170" width="100" height="30" uuid="2826b424-830b-4911-894e-77079fd9cda1"/>
+				<text><![CDATA[Tipo de Licencia:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="170" width="100" height="30" uuid="3161d8f6-561c-4336-8e91-3c4f1baf79bd"/>
+				<text><![CDATA[Precio: $]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="170" width="100" height="30" uuid="4c601ed1-97fe-4f9e-9b03-b8c79e2ebff0"/>
+				<textFieldExpression><![CDATA[$P{TipoLicencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="170" width="100" height="30" uuid="08a62437-70fb-4621-b196-f97607dde106"/>
+				<textFieldExpression><![CDATA[$P{Precio}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="190" width="500" height="2" uuid="ab773a3b-5f2f-40b1-99ff-56dfc0c7f980"/>
+			</line>
+		</band>
+	</background>
+</jasperReport>

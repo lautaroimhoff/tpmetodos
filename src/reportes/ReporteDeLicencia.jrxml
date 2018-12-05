@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteDeLicencia" pageWidth="1500" pageHeight="1000" columnWidth="1460" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a9add851-2d22-4fc9-b949-b5b8c8cf7490">
+	<property name="ireport.zoom" value="1.1000000000000016"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="34"/>
+	<parameter name="REPORTS_DIR" class="java.lang.String"/>
+	<parameter name="NroLicencia" class="java.lang.Integer"/>
+	<parameter name="Apellido" class="java.lang.String"/>
+	<parameter name="Nombre" class="java.lang.String"/>
+	<parameter name="FechaNacimiento" class="java.lang.String"/>
+	<parameter name="Domicilio" class="java.lang.String"/>
+	<parameter name="Nacionalidad" class="java.lang.String"/>
+	<parameter name="Validez" class="java.lang.String"/>
+	<parameter name="Sexo" class="java.lang.String"/>
+	<parameter name="Donante" class="java.lang.String"/>
+	<parameter name="GrupoSanguineo" class="java.lang.String"/>
+	<parameter name="FactorRH" class="java.lang.String"/>
+	<parameter name="Clase" class="java.lang.String"/>
+	<parameter name="IMG_DIR" class="java.lang.String"/>
+	<parameter name="Empleado" class="java.lang.String"/>
+	<parameter name="obs" class="java.lang.String"/>
+	<parameter name="FechaEmision" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band height="350" splitType="Stretch">
+			<image>
+				<reportElement x="589" y="0" width="555" height="350" uuid="4a07370c-c281-4d3e-83f4-54e46dc8739b"/>
+				<imageExpression><![CDATA[$P{REPORTS_DIR} + "\\dorso.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="0" y="0" width="555" height="350" uuid="48e9b3a8-7e87-4255-9670-042edeedde06"/>
+				<imageExpression><![CDATA[$P{REPORTS_DIR} + "\\licencia-de-conducir-vacia.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="40" y="240" width="120" height="15" uuid="ab5f039e-c758-438a-b606-d0eca4bb0f61"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FIRMA DEL TITULAR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="63" width="80" height="20" uuid="5f987d89-df42-4e3e-bfa1-44f0a6aceb2a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[LICENCIA Nº]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="63" width="52" height="20" uuid="b1bc8e29-e88d-4a38-9ad9-6e44bc1295cb"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SEXO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="93" width="80" height="20" uuid="f3704a74-e07a-455c-9907-027d7a9e47d5"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[APELLIDO ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="124" width="80" height="20" uuid="97238b01-9b27-4965-9f36-6d38bbf00c05"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="154" width="80" height="20" uuid="34fecb5d-5f6c-47fa-bc5b-6dd81480b563"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA DE NAC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="179" width="80" height="20" uuid="c11bb857-3d1d-4aa1-b28f-56dacfd8463d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DOMICILIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="202" width="80" height="20" uuid="9567fc0c-2482-4c8a-b9c8-4fbff87e4bf9"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NACIONALIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="220" width="42" height="18" uuid="360664ac-de8f-4ae1-8f3a-f72a0ca545f5"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLASE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="650" y="163" width="59" height="18" uuid="154e3ce1-84ee-472d-94f8-b27c51570e36"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DONANTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="650" y="134" width="78" height="20" uuid="0e4aa1a8-a3ec-48ca-9a41-7ebff97e1f32"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[G. SANGUINEO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="941" y="138" width="70" height="23" uuid="84181a3b-fc11-4387-98da-dbe62092f048"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FACTOR RH]]></text>
+			</staticText>
+			<textField>
+				<reportElement key="" x="250" y="63" width="100" height="20" uuid="c857ac52-31ed-4fd4-9568-01ccd637d4e6"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{NroLicencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="" x="250" y="93" width="100" height="20" uuid="128d1ba9-c653-4fdc-ba21-89952a17d8dd"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Apellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="" x="250" y="124" width="100" height="20" uuid="581b104c-a917-48fc-9958-305ea8f50853"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="" x="250" y="154" width="159" height="20" uuid="3a9dfe2b-f2d0-43ee-aafb-9d8b43397478"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{FechaNacimiento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="" x="250" y="179" width="100" height="20" uuid="e6f6528c-d3ef-4cec-a3c9-211afed1b381"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Domicilio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="" x="250" y="202" width="100" height="20" uuid="5f2c5c79-db5e-4be2-b367-0a73e2c8e76f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Nacionalidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="" x="422" y="260" width="120" height="20" forecolor="#FF0000" uuid="fbb1c10b-d4b6-4ace-9ac8-ba6b649ef290"/>
+				<textElement>
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Validez}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="" x="422" y="63" width="30" height="20" uuid="a987f127-0016-4459-9591-dd7a48ae50ab"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Sexo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="" x="709" y="161" width="30" height="20" uuid="a9fc302c-33c7-49cf-a124-8822ea361b6b"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Donante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="" x="728" y="134" width="30" height="20" uuid="17b5c333-e426-423e-990f-30026768e37e"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{GrupoSanguineo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="" x="1011" y="138" width="30" height="20" uuid="275138c8-25b3-4b26-ab1e-477cfac28a72"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{FactorRH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="" x="250" y="220" width="30" height="20" uuid="89021547-963d-477b-9f62-22158683f695"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Clase}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="40" y="84" width="102" height="138" uuid="479fa61c-cf4b-4327-b3b6-2b61b615c7a7"/>
+				<imageExpression><![CDATA[$P{IMG_DIR}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="983" y="210" width="161" height="20" uuid="8534ae0a-9a5d-40a1-9f63-6d28cac99ec1"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Empleado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="650" y="192" width="89" height="18" uuid="44b62d31-61d4-41ac-9fe4-90320b1c1efd"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[OBSERVACIONES]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="739" y="190" width="334" height="20" uuid="b4ecb54a-9437-4e04-a409-1a8aacb4a29c"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{obs}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="422" y="230" width="120" height="20" uuid="d17cf97a-085b-4dbd-9e4c-5947e27e78f0"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{FechaEmision}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="342" y="230" width="80" height="20" uuid="93158f80-97b5-41af-a7ab-676d5c8d5db4"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha emisión]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="342" y="260" width="80" height="20" uuid="ae1c2497-9649-4bb2-b234-da2d76ce8d08"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha vto]]></text>
+			</staticText>
+		</band>
+	</background>
+</jasperReport>

@@ -42,6 +42,11 @@ public class ImprimirLicenciaVista extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnImprimir.setText("Imprimir");
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirActionPerformed(evt);
+            }
+        });
 
         btnCancelarImpresion.setText("Cancelar");
 
@@ -59,7 +64,7 @@ public class ImprimirLicenciaVista extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(484, Short.MAX_VALUE)
+                .addContainerGap(259, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelarImpresion)
                     .addComponent(btnImprimir))
@@ -68,6 +73,10 @@ public class ImprimirLicenciaVista extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnImprimirActionPerformed
 
     /**
      * @param args the command line arguments
