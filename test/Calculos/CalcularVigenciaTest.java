@@ -28,7 +28,7 @@ public class CalcularVigenciaTest {
         System.out.println("CalcularVigencia");
         //Pruebas verdadera
         
-        Date fechaNacimiento = new Date(1995,25,10);
+        Date fechaNacimiento = new Date(1995-1900,9,25);
         String categoriaLicencia = "Renovacion";
         
         Calendar expResult = Calendar.getInstance();
@@ -37,13 +37,11 @@ public class CalcularVigenciaTest {
         expResult.set(Calendar.MONTH,fechaNacimiento.getMonth());
         
         Calendar result = CalcularVigencia.CalcularVigencia(fechaNacimiento, categoriaLicencia);
-        int año1 = expResult.get(Calendar.YEAR);
-        int año2 =result.get(Calendar.YEAR);
         assertEquals(expResult.get(Calendar.YEAR), result.get(Calendar.YEAR));
         
         
         System.out.println("CalcularVigencia");
-        Date fechaNacimiento1 = new Date(2000,15,9);
+        Date fechaNacimiento1 = new Date(2000 - 1900,8,15);
         String categoriaLicencia1 = "Primera vez";
         
         Calendar expResult1 = Calendar.getInstance();
@@ -56,7 +54,7 @@ public class CalcularVigenciaTest {
         
         
         System.out.println("CalcularVigencia");
-        Date fechaNacimiento2 = new Date(1940,10,9);
+        Date fechaNacimiento2 = new Date(1940 -1900 ,8,10);
         String categoriaLicencia2 = "Renovacion";
         
         Calendar expResult2 = Calendar.getInstance();
@@ -70,7 +68,7 @@ public class CalcularVigenciaTest {
         
         //Pruebas falsa
          System.out.println("CalcularVigencia");
-        Date fechaNacimiento3 = new Date(1950,10,9);
+        Date fechaNacimiento3 = new Date(1950 - 1900,8,10);
         String categoriaLicencia3 = "Renovacion";
         
         Calendar expResult3 = Calendar.getInstance();

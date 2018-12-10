@@ -8,7 +8,6 @@ package ControladoresGestores;
 import DAOs.UsuarioDAO;
 import Entity.Licencia;
 import Entity.Usuario;
-import Vista.ImprimirLicenciaVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -21,40 +20,25 @@ import net.sf.jasperreports.view.*;
  *
  * @author Elias Capasso
  */
-public class ImprimirLicenciaControlador implements ActionListener{
-    ImprimirLicenciaVista imprimirLicenciaVista;
+public class ImprimirLicenciaControlador {
+  
     Licencia licencia;
     int costo;
-    public ImprimirLicenciaControlador(ImprimirLicenciaVista vista, Licencia licencia , int costo){
+    public ImprimirLicenciaControlador(Licencia licencia , int costo){
         this.licencia = licencia;
-        this.imprimirLicenciaVista = vista;
         this.costo = costo;
+        
     }
     
     public void iniciar(){
-        imprimirLicenciaVista.setTitle("IMPRIMIR LICENCIA");
-        imprimirLicenciaVista.setLocationRelativeTo(null);
+        imprimirLicencia(licencia);
+        
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        String comando = e.getActionCommand();
-        
-        switch(comando){
-            case "IMPRIMIR":
-                imprimirLicencia(licencia);
-                
-                System.out.println("Se imprime la licencia");
-                break;
-            case "CANCELAR":
-                this.imprimirLicenciaVista.setVisible(false);
-                break;
-        }
-    }
-    
+ 
     private void imprimirLicencia(Licencia licencia){
         //Implementar
-        SimpleDateFormat sm = new SimpleDateFormat("dd/mm/yyyy");
+        SimpleDateFormat sm = new SimpleDateFormat("dd-MM-yyyy");
         String path = System.getProperty("user.dir"); 
         String fileName = path.trim() + "\\src\\reportes\\ReporteDeLicencia.jasper";
         HashMap param = new HashMap();

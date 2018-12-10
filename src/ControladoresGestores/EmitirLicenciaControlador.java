@@ -18,7 +18,6 @@ import Entity.Licencia;
 import Entity.Titular;
 import Entity.Usuario;
 import Vista.EmitirLicenciaVista;
-import Vista.ImprimirLicenciaVista;
 import Vista.MenuPrincipalVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -195,12 +194,12 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
         Calendar vigencia = CalcularVigencia.CalcularVigencia(titular.getFechanacimiento(), emitirLicenciaVista.cbListaCategoria.getSelectedItem().toString());
         int aniosVigencia = CalcularVigencia.getAñosVigencia(vigencia);
         
-        Calendar calendar = Calendar.getInstance();
+       /* Calendar calendar = Calendar.getInstance();
         titular.setFechagestion(emitirLicenciaVista.dccFechaEmision.getDate());
         calendar.setTime(titular.getFechagestion());
-        calendar.add(Calendar.YEAR, aniosVigencia);
+        calendar.add(Calendar.YEAR, aniosVigencia);*/
         
-        fechaVencimiento = calendar.getTime();
+        fechaVencimiento = vigencia.getTime();
         
         return aniosVigencia;
     }    
@@ -306,7 +305,7 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
                             
                             if(seleccion == JOptionPane.OK_OPTION){
                                 imprimirLicencia(licencia , costo);
-                                volver = false;
+                                volver = true;
                             }
                             else{
                                 volver = true;
@@ -400,12 +399,10 @@ public class EmitirLicenciaControlador implements ActionListener, MouseListener{
         }
     }
     
-    private void imprimirLicencia(Licencia licencia , int Costo){
-        ImprimirLicenciaVista imprimirLicenciaVista = new ImprimirLicenciaVista();
-        ImprimirLicenciaControlador imprimirLicenciaControlador = new ImprimirLicenciaControlador(imprimirLicenciaVista, licencia , costo);
-        imprimirLicenciaVista.conectaControlador(imprimirLicenciaControlador);
+    private void imprimirLicencia(Licencia licencia , int costo){
+         
+        ImprimirLicenciaControlador imprimirLicenciaControlador = new ImprimirLicenciaControlador(licencia , costo);
         imprimirLicenciaControlador.iniciar();
-        imprimirLicenciaVista.setVisible(true);
     }
 
     @Override
